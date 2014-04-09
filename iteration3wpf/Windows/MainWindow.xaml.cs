@@ -27,14 +27,10 @@ namespace iteration3wpf
 
         public MainWindow()
         {
+            SQLiteDB.main = new SQLiteDB();
+
             mainWindow = this;
             InitializeComponent();
-
-            activeUser = new Student();
-            activeUser.fullname = "Zachary Harris";
-
-            lblName.Content = activeUser.fullname;
-            lblUsertype.Content = activeUser.GetType().ToString().LastWord('.');
 
             LoginScreen loginScreen = new LoginScreen();
             loginScreen.Show();
@@ -44,6 +40,13 @@ namespace iteration3wpf
                 this.Show();
                 loginScreen.Close();
             };
+
+            activeUser = new Student();
+            activeUser.fullname = "Zachary Harris";
+
+            lblName.Content = activeUser.fullname;
+            lblUsertype.Content = activeUser.GetType().ToString().LastWord('.');
+
             cmbCourse.IsEditable = true;
             cmbCourse.Text = "Select Course";
 

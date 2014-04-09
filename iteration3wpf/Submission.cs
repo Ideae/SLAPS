@@ -12,5 +12,10 @@ namespace iteration3wpf
         public Group owner { get; set; }
         public Student submitter { get; set; }
 
+
+        internal static Submission getById(int i)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

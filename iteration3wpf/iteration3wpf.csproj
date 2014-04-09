@@ -70,6 +70,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Administrator.cs" />
+    <Compile Include="Loadable.cs" />
+    <Compile Include="SQLiteDB.cs" />
     <Compile Include="Windows\ChangePassWindow.xaml.cs">
       <DependentUpon>ChangePassWindow.xaml</DependentUpon>
     </Compile>

@@ -24,5 +24,10 @@ namespace iteration3wpf
             InitializeComponent();
         }
 
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }
