@@ -34,7 +34,8 @@ namespace iteration3wpf
             activeUser.fullname = "Zachary Harris";
 
             lblName.Content = activeUser.fullname;
-            lblUsertype.Content = activeUser.GetType().ToString().LastWord('.');
+            //lblUsertype.Content = activeUser.GetType().ToString().LastWord('.');
+            lblUsertype.Content = activeUser.TypeName();
 
             LoginScreen loginScreen = new LoginScreen();
             loginScreen.Show();
@@ -46,6 +47,8 @@ namespace iteration3wpf
             };
             cmbCourse.IsEditable = true;
             cmbCourse.Text = "Select Course";
+            cmbCourse.IsReadOnly = true;
+            cmbCourse.Items.Add("Smalltalk 5");
 
             //menuTopRight.ContextMenu = new ContextMenu();
             MenuItem menuItemOptions = new MenuItem(); menuItemOptions.Header = "Options";
@@ -57,6 +60,11 @@ namespace iteration3wpf
             menuItemOptions.Items.Add(menuItemLogout);
 
             menuItemChangePassword.Click += menuItemChangePassword_Click;
+
+            HomePage homePage = new HomePage();
+            //NavigationService nav = NavigationService.GetNavigationService(homePage);
+            frameMainframe.Navigate(homePage);
+            //nav.Navigate(homePage);
             
         }
 

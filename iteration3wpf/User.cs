@@ -8,6 +8,7 @@ namespace iteration3wpf
 {
     public abstract class User
     {
+        public static int minPasswordLength = 6;
         // attributes //
         public string fullname { get; set; }
         public string username { get; set; } // stores the username of the user
@@ -24,6 +25,11 @@ namespace iteration3wpf
         public override string ToString()
         {
             return username;
+        }
+
+        public User()
+        {
+            password = "p";
         }
     }
     

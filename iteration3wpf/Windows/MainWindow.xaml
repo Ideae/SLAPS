@@ -11,6 +11,8 @@
         <Label x:Name="lblName" Content="name" HorizontalAlignment="Left" Margin="499,-3,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblUsertype" Content="title" HorizontalAlignment="Left" Margin="499,14,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnTest" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnTest_Click"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="440" Margin="197,40,0,0" Stroke="Black" VerticalAlignment="Top" Width="531"/>
+        <Frame x:Name="frameMainframe" Content="Frame" HorizontalAlignment="Left" Height="440" Margin="197,39,0,0" VerticalAlignment="Top" Width="531"/>
 
     </Grid>
 </Window>

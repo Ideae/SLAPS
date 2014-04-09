@@ -31,6 +31,12 @@ namespace iteration3wpf
                 //PopupWindow popup = new PopupWindow();
                 MessageBox.Show(this, "Old password is incorrect.");
             }
+            else if (txtNewPass1.Text.Length < User.minPasswordLength
+                ||   txtNewPass2.Text.Length < User.minPasswordLength)
+            {
+                string msg = "The new password must be at least " + User.minPasswordLength + " characters.";
+                MessageBox.Show(this, msg);
+            }
             else if (!txtNewPass1.Text.Equals(txtNewPass2.Text))
             {
                 MessageBox.Show(this, "The new password fields did not match.");
