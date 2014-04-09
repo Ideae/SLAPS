@@ -16,7 +16,11 @@ using System.Windows.Shapes;
 
 namespace iteration3wpf
 {
-
+    public enum AllPages
+    {
+        Home,
+        ViewMessages,
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -25,10 +29,13 @@ namespace iteration3wpf
         public static MainWindow mainWindow;
         public User activeUser;
 
+        public Dictionary<AllPages, Page> pageDict;
+
         public MainWindow()
         {
             mainWindow = this;
             InitializeComponent();
+            Utilities.CenterWindow(this);
 
             activeUser = new Student();
             activeUser.fullname = "Zachary Harris";
@@ -39,6 +46,7 @@ namespace iteration3wpf
 
             LoginScreen loginScreen = new LoginScreen();
             loginScreen.Show();
+            Utilities.CenterWindow(loginScreen);
             this.Hide();
             loginScreen.btnLogin.Click += (s, e) =>
             {
@@ -61,9 +69,13 @@ namespace iteration3wpf
 
             menuItemChangePassword.Click += menuItemChangePassword_Click;
 
-            HomePage homePage = new HomePage();
+            pageDict = new Dictionary<AllPages, Page>()
+            {
+                {AllPages.Home, new HomePage()},
+                {AllPages.ViewMessages, new ViewMessagesPage()},
+            };
             //NavigationService nav = NavigationService.GetNavigationService(homePage);
-            frameMainframe.Navigate(homePage);
+            frameMainframe.Navigate(pageDict[AllPages.Home]);
             //nav.Navigate(homePage);
             
         }
@@ -73,6 +85,7 @@ namespace iteration3wpf
             ChangePassWindow changePassWindow = new ChangePassWindow();
             this.IsEnabled = false;
             changePassWindow.Show();
+            Utilities.CenterWindow(changePassWindow);
             changePassWindow.Closed += (s, ee) =>
             {
                 this.IsEnabled = true;
@@ -118,6 +131,16 @@ namespace iteration3wpf
         private void cmbCourse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void btnPage1_Click(object sender, RoutedEventArgs e)
+        {
+            frameMainframe.Navigate(pageDict[AllPages.Home]);
+        }
+
+        private void btnPage2_Click(object sender, RoutedEventArgs e)
+        {
+            frameMainframe.Navigate(pageDict[AllPages.ViewMessages]);
         }
     }
 }

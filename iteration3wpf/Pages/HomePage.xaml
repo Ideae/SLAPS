@@ -4,12 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="440" d:DesignWidth="531"
 	Title="HomePage">
 
     <Grid>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="140" Margin="72,91,0,0" Stroke="Black" VerticalAlignment="Top" Width="135"/>
-        <Label Content="page1" HorizontalAlignment="Left" Margin="128,158,0,0" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="440" Stroke="Black" VerticalAlignment="Top" Width="531"/>
+        <Label Content="page1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="page1" HorizontalAlignment="Left" Margin="478,404,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
