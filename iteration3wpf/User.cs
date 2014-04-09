@@ -9,7 +9,7 @@ namespace iteration3wpf
 {
     public class User : Loadable<User>
     {
-
+        public static int minPasswordLength = 6;
         // attributes //
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -24,7 +24,7 @@ namespace iteration3wpf
         protected override void SetData(DataRow UserRow)
         {
             
-            ID = UserRow.Field<int>("Id");
+            ID = (int)UserRow.Field<long>("Id");
             username = UserRow.Field<string>("Username");
             password = UserRow.Field<string>("Password");
             firstName = UserRow.Field<string>("FirstName");
@@ -34,7 +34,7 @@ namespace iteration3wpf
 
             int[] groupList = SQLiteDB.decodeList(UserRow.Field<string>("Groups"));
             int[] courseList = SQLiteDB.decodeList( UserRow.Field<string>("Courses"));
-            int[] submissionList = SQLiteDB.decodeList( UserRow.Field<string>("Submissions"));
+            int[] submissionList = SQLiteDB.decodeList( UserRow.Field<string>("IndSubmissions"));
 
             foreach (int i in groupList) groups.Add(Group.getById(i));
             foreach (int i in courseList) courses.Add(Course.getById(i));
@@ -46,12 +46,13 @@ namespace iteration3wpf
         // checks the databse for a user with the specified credentials
         public static User login(string username, string password)
         {
-            DataTable t = SQLiteDB.main.GetDataTable("SELECT * FROM Users WHERE Username='@param1';", username);
+            DataTable t = SQLiteDB.main.GetDataTable("SELECT * FROM 'Users' WHERE Username=@param1;", username);
             if (t.Rows.Count < 1) return null;
             else if (t.Rows.Count > 1) throw new SystemException("There were two users with the same name in the database");
             else
             {
                 DataRow UserRow = t.Rows[0];
+                Console.WriteLine(UserRow.Field<string>("Password"));
                 if (UserRow.Field<string>("Password") != password) return null;
                 else switch (UserRow.Field<string>("UserType"))
                     {
@@ -72,6 +73,7 @@ namespace iteration3wpf
         {
             return username;
         }
+
     }
     
 

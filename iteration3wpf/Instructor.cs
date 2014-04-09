@@ -14,7 +14,6 @@ namespace iteration3wpf
             SetData(UserRow);
         }
         //File[] getInstructionDocs();
-        public List<Course> courses { get; set; }
         //List<Project> getProjects() { }
         //List<Submission> getSubmissions() { }
         public void requestPWReset() { }

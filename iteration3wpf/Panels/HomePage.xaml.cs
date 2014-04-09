@@ -10,26 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace iteration3wpf
 {
     /// <summary>
-    /// Interaction logic for LoginScreen.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class LoginScreen : Window
+    public partial class HomePage : Page
     {
-        public User result;
-        public LoginScreen()
+        public HomePage()
         {
             InitializeComponent();
         }
-
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            result = User.login(txtUsername.Text, txtPassword.Password);
-            if (result == null) MessageBox.Show("Login Error!");
-        }
-
     }
 }

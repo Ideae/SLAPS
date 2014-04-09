@@ -11,11 +11,9 @@ namespace iteration3wpf
     {
         private System.Data.DataRow UserRow;
 
-        public Administrator(DataRow UserRow): base(UserRow)
+        public Administrator(DataRow UserRow)
         {
-            // TODO: Complete member initialization
-            
-            this.UserRow = UserRow;
+            SetData(UserRow);
         }
         //List<User> filterUsers(List<User> users, string regEx, OrderEnum order);
     }

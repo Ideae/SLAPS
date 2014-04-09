@@ -12,5 +12,10 @@ namespace iteration3wpf
         {
             return s.Substring(s.LastIndexOf(delim) + 1);
         }
+
+        public static string TypeName(this object o)
+        {
+            return o.GetType().ToString().LastWord('.');
+        }
     }
 }
