@@ -33,16 +33,11 @@ namespace iteration3wpf
 
         public MainWindow()
         {
+            SQLiteDB.main = new SQLiteDB("iteration3.sql");
+
             mainWindow = this;
             InitializeComponent();
             Utilities.CenterWindow(this);
-
-            activeUser = new Student();
-            activeUser.fullname = "Zachary Harris";
-
-            lblName.Content = activeUser.fullname;
-            //lblUsertype.Content = activeUser.GetType().ToString().LastWord('.');
-            lblUsertype.Content = activeUser.TypeName();
 
             LoginScreen loginScreen = new LoginScreen();
             loginScreen.Show();
@@ -50,13 +45,11 @@ namespace iteration3wpf
             this.Hide();
             loginScreen.btnLogin.Click += (s, e) =>
             {
+                if(loginScreen.result != null){
+                InitUser(loginScreen.result);
                 this.Show();
-                loginScreen.Close();
+                loginScreen.Close();}
             };
-            cmbCourse.IsEditable = true;
-            cmbCourse.Text = "Select Course";
-            cmbCourse.IsReadOnly = true;
-            cmbCourse.Items.Add("Smalltalk 5");
 
             //menuTopRight.ContextMenu = new ContextMenu();
             MenuItem menuItemOptions = new MenuItem(); menuItemOptions.Header = "Options";
@@ -78,6 +71,19 @@ namespace iteration3wpf
             frameMainframe.Navigate(pageDict[AllPages.Home]);
             //nav.Navigate(homePage);
             
+        }
+
+        void InitUser(User u)
+        {
+            activeUser = u;
+
+            lblName.Content = activeUser.firstName + " " + activeUser.lastName;
+            lblUsertype.Content = activeUser.TypeName();
+
+            cmbCourse.IsEditable = true;
+            cmbCourse.Text = "Select Course";
+            cmbCourse.IsReadOnly = true;
+            cmbCourse.Items.Add("Smalltalk 5");
         }
 
         void menuItemChangePassword_Click(object sender, RoutedEventArgs e)

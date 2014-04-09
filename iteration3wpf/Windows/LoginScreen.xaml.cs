@@ -19,9 +19,16 @@ namespace iteration3wpf
     /// </summary>
     public partial class LoginScreen : Window
     {
+        public User result;
         public LoginScreen()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            result = User.login(txtUsername.Text, txtPassword.Password);
+            if (result == null) MessageBox.Show("Login Error!");
         }
 
     }

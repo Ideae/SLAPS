@@ -19,5 +19,10 @@ namespace iteration3wpf
         {
             return name;
         }
+
+        internal static Course getById(int i)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
