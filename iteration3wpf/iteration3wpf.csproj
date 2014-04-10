@@ -69,8 +69,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Administrator.cs" />
     <Compile Include="Loadable.cs" />
+    <Compile Include="LFile.cs" />
     <Compile Include="SQLiteDB.cs" />
     <Compile Include="Panels\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -80,13 +80,11 @@
     </Compile>
     <Compile Include="Course.cs" />
     <Compile Include="Group.cs" />
-    <Compile Include="Instructor.cs" />
     <Compile Include="Windows\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Project.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="Student.cs" />
     <Compile Include="Submission.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Utilities.cs" />
@@ -140,6 +138,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="syn.snippet" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -151,6 +150,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Iteration3.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

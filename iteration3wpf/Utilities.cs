@@ -17,5 +17,7 @@ namespace iteration3wpf
         {
             return o.GetType().ToString().LastWord('.');
         }
+
+
     }
 }

@@ -7,30 +7,33 @@ using System.Threading.Tasks;
 
 namespace iteration3wpf
 {
-    public class Group
+    public class Group : Loadable<Group>
     {
-        private static List<Group> loadedGroups;
-        private System.Data.DataRow dataRow;
+        [Synchronize]
+        private int _Id;
+        public int Id { get { return _Id; } set { _Id = sync("Id", value); } }
+        [Synchronize]
+        private string _Name;
+        public string Name { get { return _Name; } set { _Name = sync("Name", value); } }
+        [Synchronize]
+        private List<User> _Members;
+        public List<User> Members { get { return _Members; } set { _Members = sync("Members", value); } }
+        [Synchronize]
+        private Project _GrpProject;
+        public Project GrpProject { get { return _GrpProject; } set { _GrpProject = sync("Project", value); } }
+        [Synchronize]
+        private float _Mark;
+        public float Mark { get { return _Mark; } set { _Mark = sync("Mark", value); } }
+        [Synchronize]
+        private Submission _GrpSubmission;
+        public Submission GrpSubmission { get { return _GrpSubmission; } set { _GrpSubmission = sync("Submission", value); } }
 
-        public Group(DataRow dataRow)
-        {
-
-
-        }
-        public string name { get; set; }
-        public int id { get; set; }
-        public Course course { get; set; }
-        //public Student leader;
-        public List<Student> students { get; set; }
+        
+        public Group() { }
         public override string ToString()
         {
             return name;
         }
 
-        internal static Group getById(int id)
-        {
-            if (loadedGroups.Any((g)=>g.id == id)) return loadedGroups.First((g)=>g.id == id);
-            else return new Group(SQLiteDB.main.getRowById("Groups", id));
-        }
     }
 }

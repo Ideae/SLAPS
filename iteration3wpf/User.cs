@@ -7,43 +7,46 @@ using System.Threading.Tasks;
 
 namespace iteration3wpf
 {
-    public class User : Loadable<User>
+    public enum usertype{ Student, Admin, Instructor};
+    public sealed class User : Loadable<User>
     {
-        public static int minPasswordLength = 6;
+        
+
+        public const int minPasswordLength = 6;
         // attributes //
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public List<Group> groups { get; set; }
-        public List<Submission> submissions { get; set; }
-        public List<Course> courses { get; set; }
 
+        [Synchronize]
+        private int _Id;
+        public override int Id { get{return _Id;} set{} }
+        [Synchronize]
+        private string _Username; 
+        public string Username { get { return _Username; } set { _Username = sync("Username", value); } } // stores the username of the user
+        [Synchronize]
+        private string _Password;
+        public string Password { get { return _Password; } set { _Password = sync("Password", value); } } // stores the password of the user
+        [Synchronize]
+        private string _FirstName;
+        public string FirstName { get { return _FirstName; } set { _FirstName = sync("FirstName", value); } }
+        [Synchronize]
+        private string _LastName;
+        public string LastName { get { return _LastName; } set { _LastName = sync("LastName", value); } }
+        [Synchronize]
+        private usertype _UserType;
+        public usertype UserType { get { return _UserType; } set { _UserType = sync("UserType", value); } }
+        [Synchronize]
+        private List<Course> _Courses;
+        public List<Course> Courses { get { return _Courses; } set { _Courses = sync("Courses", value); } }
+        [Synchronize]
+        private List<Group> _Groups;
+        public List<Group> Groups { get { return _Groups; } set { _Groups = sync("Groups", value); } }
+        [Synchronize]
+        private List<Submission> _Submissions;
+        public List<Submission> Submissions { get { return _Submissions; } set { _Submissions = sync("Submissions", value); } }
 
-        public string username { get; set; } // stores the username of the user
-        public string password { get; set; } // stores the password of the user
-        public int ID;
-        protected override void SetData(DataRow UserRow)
-        {
-            
-            ID = (int)UserRow.Field<long>("Id");
-            username = UserRow.Field<string>("Username");
-            password = UserRow.Field<string>("Password");
-            firstName = UserRow.Field<string>("FirstName");
-            lastName = UserRow.Field<string>("LastName");
-
-            loadedCache[ID] = this;
-
-            int[] groupList = SQLiteDB.decodeList(UserRow.Field<string>("Groups"));
-            int[] courseList = SQLiteDB.decodeList( UserRow.Field<string>("Courses"));
-            int[] submissionList = SQLiteDB.decodeList( UserRow.Field<string>("IndSubmissions"));
-
-            foreach (int i in groupList) groups.Add(Group.getById(i));
-            foreach (int i in courseList) courses.Add(Course.getById(i));
-            foreach (int i in submissionList) submissions.Add(Submission.getById(i));
-        }
 
         public User() { }
-        // methods //
-        // checks the databse for a user with the specified credentials
+        public User(DataRow data) { SetData(data); }
+
         public static User login(string username, string password)
         {
             DataTable t = SQLiteDB.main.GetDataTable("SELECT * FROM 'Users' WHERE Username=@param1;", username);
@@ -52,26 +55,20 @@ namespace iteration3wpf
             else
             {
                 DataRow UserRow = t.Rows[0];
+                
                 Console.WriteLine(UserRow.Field<string>("Password"));
                 if (UserRow.Field<string>("Password") != password) return null;
-                else switch (UserRow.Field<string>("UserType"))
-                    {
-                        case "Admin": return new Administrator(UserRow);
-                        case "Instructor": return new Instructor(UserRow);
-                        case "Student": return new Student(UserRow);
-                        default: throw new SystemException("Invalid Usertype read from DataBase");
-                    }
+                else return new User(UserRow);
             }
         }
         public void changePassword() { } // method to change the user’s password
 
-        public void logout() { } // method to log the user out
-
         public void getSLAPs() { }
         public void sendSLAPs() { }
+        //Utils
         public override string ToString()
         {
-            return username;
+            return Username;
         }
 
     }

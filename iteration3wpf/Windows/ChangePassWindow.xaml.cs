@@ -26,7 +26,7 @@ namespace iteration3wpf
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if (!txtOldPass.Text.Equals(MainWindow.mainWindow.activeUser.password))
+            if (!txtOldPass.Text.Equals(MainWindow.mainWindow.activeUser.Password))
             {
                 //PopupWindow popup = new PopupWindow();
                 MessageBox.Show(this, "Old password is incorrect.");
@@ -43,7 +43,7 @@ namespace iteration3wpf
             }
             else
             {
-                MainWindow.mainWindow.activeUser.password = txtNewPass1.Text;
+                MainWindow.mainWindow.activeUser.Password = txtNewPass1.Text;
                 MessageBox.Show(this, "Your password is born again.");
                 Close();
             }
