@@ -232,7 +232,7 @@ public class SQLiteDB
         }
     }
 
-    public T PinPoint<T>(string table, int id, string column)
+    public T Sync<T>(string table, int id, string column)
     {
         DataTable t = GetDataTable("SELECT @param1 FROM @param2 WHERE Id=@param3;", column, table,  id.ToString());
         return t.Rows[0].Field<T>(0);

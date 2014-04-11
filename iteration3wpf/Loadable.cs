@@ -66,7 +66,7 @@ namespace iteration3wpf
                 }
 
                 else throw new NotImplementedException("Only Lists of Loadable derived types are supported.");
-            else throw new NotImplementedException("Only Lists of Loadable derived types are supported.");
+            else throw new NotImplementedException("Only Primitives and Loadable derived types are supported.");
             return o;
         }
         private static string composeDB(Object o)
@@ -103,7 +103,7 @@ namespace iteration3wpf
 
         }
         protected void reload() { }
-        protected V sync<V>(string propName, V value)
+        protected V syncUp<V>(string propName, V value)
         {
             V oldVal = (V)this.GetType().GetProperty(propName).GetValue(this);
             V oldValDB = (V)parseDB(SQLiteDB.main.getRowById(TableName, this.Id), typeof(V), propName);
@@ -117,12 +117,28 @@ namespace iteration3wpf
                 SQLiteDB.main.Update(TableName, new Dictionary<string, string>() { { propName, composeDB(value) } }, "Id=" + this.Id);
                 return value;
             }
-
-
         }
+
+        protected V syncDown<V>(string propName, V value)
+        {
+            V oldVal = (V)this.GetType().GetProperty(propName).GetValue(this);
+            V oldValDB = (V)parseDB(SQLiteDB.main.getRowById(TableName, this.Id), typeof(V), propName);
+            if (oldVal != null && !oldVal.Equals(oldValDB))
+            {
+                MessageBox.Show("Database was modified by other User at the same time, Please check the value and try again.");
+                return oldValDB;
+            }
+            else
+            {
+                SQLiteDB.main.Update(TableName, new Dictionary<string, string>() { { propName, composeDB(value) } }, "Id=" + this.Id);
+                return value;
+            }
+        }
+
+
     }
     [System.AttributeUsage(System.AttributeTargets.Field)]
     public class Synchronize : System.Attribute { }
 
-    public class Loadable { }
+    public interface Loadable { }
 }

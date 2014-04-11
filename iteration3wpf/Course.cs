@@ -10,22 +10,22 @@ namespace iteration3wpf
     {
         [Synchronize]
         private int _Id;
-        public override int Id { get { return _Id; } set { _Id = sync("Id", value); } }
+        public override int Id { get { return _Id; } set { _Id = syncUp("Id", value); } }
         [Synchronize]
         private string _CourseCode;
-        public string CourseCode { get { return _CourseCode; } set { _CourseCode = sync("CourseCode", value); } }
+        public string CourseCode { get { return _CourseCode; } set { _CourseCode = syncUp("CourseCode", value); } }
         [Synchronize]
         private User _Instructor;
-        public User Instructor { get { return _Instructor; } set { _Instructor = sync("Instructor", value); } }
+        public User Instructor { get { return _Instructor; } set { _Instructor = syncUp("Instructor", value); } }
         [Synchronize]
         private List<Project> _Projects;
-        public List<Project> Projects { get { return _Projects; } set { _Projects = sync("Projects", value); } }
+        public List<Project> Projects { get { return _Projects; } set { _Projects = syncUp("Projects", value); } }
         [Synchronize]
         private List<Group> _Groups;
-        public List<Group> Groups { get { return _Groups; } set { _Groups = sync("Groups", value); } }
+        public List<Group> Groups { get { return _Groups; } set { _Groups = syncUp("Groups", value); } }
         [Synchronize]
         private List<User> _Students;
-        public List<User> Students { get { return _Students; } set { _Students = sync("Students", value); } }
+        public List<User> Students { get { return _Students; } set { _Students = syncUp("Students", value); } }
 
 
 
