@@ -17,13 +17,38 @@ namespace iteration3wpf
         private static readonly Func<int, T> _addDelegate = key =>
             {
                 T item = new T();
-                item.SetData(SQLiteDB.main.getRowById(item.TableName, key));
+                item.SetDataLite(SQLiteDB.main.getRowById(item.TableName, key));
                 return item;
             };
 
         static Loadable()
         {
             //_tableName = typeof(T).TypeName() + "s";
+        }
+
+        protected virtual void SetDataLite(DataRow data)
+        {
+            FieldInfo[] fInfos = this.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+            foreach (var p in fInfos)
+            {
+                Synchronize syn = (Synchronize) p.GetCustomAttribute(typeof(Synchronize));
+                if (syn == null || syn.lite == false ) return;
+
+                Object o = null;
+                string columnName = p.Name.Substring(1);
+                if (!data.Table.Columns.Contains(columnName))
+                {
+                    String t = "";
+                    if (p.FieldType == typeof(int) || p.FieldType == typeof(long) || p.FieldType == typeof(byte)) t = "INTEGER";
+                    else if (p.FieldType == typeof(float) || p.FieldType == typeof(double)) t = "NUMERIC";
+                    else t = "TEXT";
+                    SQLiteDB.main.ExecuteNonQuery("ALTER TABLE " + TableName + " ADD COLUMN " + columnName + " "+ t +";");
+                    throw new SystemException("Database Was upgraded. The previous database was inconsistent with new code. This excpe[tion will probably not Happen the next time you run the program.");
+                }
+
+                o = parseDB(data, p.FieldType, columnName);
+                p.SetValue(this, o);
+            }
         }
 
         protected virtual void SetData(DataRow data)
@@ -41,7 +66,7 @@ namespace iteration3wpf
                     if (p.FieldType == typeof(int) || p.FieldType == typeof(long) || p.FieldType == typeof(byte)) t = "INTEGER";
                     else if (p.FieldType == typeof(float) || p.FieldType == typeof(double)) t = "NUMERIC";
                     else t = "TEXT";
-                    SQLiteDB.main.ExecuteNonQuery("ALTER TABLE " + TableName + " ADD COLUMN " + columnName + " "+ t +";");
+                    SQLiteDB.main.ExecuteNonQuery("ALTER TABLE " + TableName + " ADD COLUMN " + columnName + " " + t + ";");
                     throw new SystemException("Database Was upgraded. The previous database was inconsistent with new code. This excpe[tion will probably not Happen the next time you run the program.");
                 }
 
@@ -121,24 +146,19 @@ namespace iteration3wpf
 
         protected V syncDown<V>(string propName, V value)
         {
-            V oldVal = (V)this.GetType().GetProperty(propName).GetValue(this);
-            V oldValDB = (V)parseDB(SQLiteDB.main.getRowById(TableName, this.Id), typeof(V), propName);
-            if (oldVal != null && !oldVal.Equals(oldValDB))
-            {
-                MessageBox.Show("Database was modified by other User at the same time, Please check the value and try again.");
-                return oldValDB;
-            }
-            else
-            {
-                SQLiteDB.main.Update(TableName, new Dictionary<string, string>() { { propName, composeDB(value) } }, "Id=" + this.Id);
-                return value;
-            }
+            if (value != null && !value.Equals(default(V))) return value;
+            V DBVal = (V)parseDB(SQLiteDB.main.getRowById(TableName, this.Id), typeof(V), propName);
+            return DBVal;
         }
 
 
     }
     [System.AttributeUsage(System.AttributeTargets.Field)]
-    public class Synchronize : System.Attribute { }
+    public class Synchronize : System.Attribute {
+        public bool lite = false;
+
+        public Synchronize(bool lite = false) { this.lite = lite; }
+    }
 
     public interface Loadable { }
 }

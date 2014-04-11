@@ -9,24 +9,24 @@ namespace iteration3wpf
 {
     public class Group : Loadable<Group>
     {
-        [Synchronize]
+        [Synchronize(true)]
         private int _Id;
-        public override int Id { get { return _Id; } set { _Id = syncUp("Id", value); } }
-        [Synchronize]
+        public override int Id { get {return syncDown("Id", _Id); } set { _Id = syncUp("Id", value); } }
+        [Synchronize(true)]
         private string _Name;
-        public string Name { get { return _Name; } set { _Name = syncUp("Name", value); } }
+        public string Name { get {return syncDown("Name", _Name); } set { _Name = syncUp("Name", value); } }
         [Synchronize]
         private List<User> _Members;
-        public List<User> Members { get { return _Members; } set { _Members = syncUp("Members", value); } }
+        public List<User> Members { get {return syncDown("Members", _Members); } set { _Members = syncUp("Members", value); } }
         [Synchronize]
         private Project _GrpProject;
-        public Project GrpProject { get { return _GrpProject; } set { _GrpProject = syncUp("Project", value); } }
+        public Project GrpProject { get {return syncDown("GrpProject", _GrpProject); } set { _GrpProject = syncUp("Project", value); } }
         [Synchronize]
         private float _Mark;
-        public float Mark { get { return _Mark; } set { _Mark = syncUp("Mark", value); } }
+        public float Mark { get {return syncDown("Mark", _Mark); } set { _Mark = syncUp("Mark", value); } }
         [Synchronize]
         private Submission _GrpSubmission;
-        public Submission GrpSubmission { get { return _GrpSubmission; } set { _GrpSubmission = syncUp("Submission", value); } }
+        public Submission GrpSubmission { get {return syncDown("GrpSubmission", _GrpSubmission); } set { _GrpSubmission = syncUp("Submission", value); } }
 
         
         public Group() { }

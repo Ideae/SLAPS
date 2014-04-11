@@ -7,12 +7,12 @@ namespace iteration3wpf
 {
     public class LFile : Loadable<LFile>
     {
-        [Synchronize]
+        [Synchronize(true)]
         private int _Id;
-        public override int Id { get { return _Id; } set { _Id = syncUp("Id", value); } }
+        public override int Id { get {return syncDown("Id", _Id); } set { _Id = syncUp("Id", value); } }
 
-        [Synchronize]
+        [Synchronize(true)]
         private string _Path;
-        public string Path { get { return _Path; } set { _Path = syncUp("Path", value); } }
+        public string Path { get {return syncDown("Path", _Path); } set { _Path = syncUp("Path", value); } }
     }
 }
