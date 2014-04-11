@@ -1,0 +1,41 @@
+﻿<Page x:Class="iteration3wpf.Pages.ProjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="411" d:DesignWidth="435"
+	Title="ProjectPage">
+
+    <Grid>
+        <Rectangle x:Name="rectProject" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="411" Stroke="Black" VerticalAlignment="Top" Width="435"/>
+        <Label Content="Project Name:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+        <Label Content="Instruction Documents" HorizontalAlignment="Left" Margin="10,246,0,0" VerticalAlignment="Top"/>
+        <Border HorizontalAlignment="Left" Height="110" Margin="10,273,0,0" VerticalAlignment="Top" Width="235" BorderThickness="2" BorderBrush="#FF707070" >
+            <StackPanel x:Name="stkFiles" Background="#FFAABBC1"/>
+
+        </Border>
+        <Label x:Name="lblProjectName" Content="Project Name" HorizontalAlignment="Left" Margin="104,42,0,0" VerticalAlignment="Top"/>
+        <Label Content="Marks available:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblMaxMarks" Content="Max Marks" HorizontalAlignment="Left" Margin="104,68,0,0" VerticalAlignment="Top"/>
+        <Label Content="Due Date:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblDueDate" Content="Duedate" HorizontalAlignment="Left" Margin="104,94,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="___No_Name_" Content="Summary" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Height="25" Width="62"/>
+        <Border HorizontalAlignment="Left" Margin="260,19,0,28" Padding="7" BorderThickness="2" Background="#FFAABBC1" BorderBrush="#FF707070" Width="147">
+            <Grid>
+                <Button x:Name="btnEditProject" Content="Edit Project" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Click="btnEditProject_Click"/>
+                <Button x:Name="btnUploadInstructions" Content="Upload Instructions" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" Width="129"/>
+                <Button x:Name="btnCreateGroup" Content="Create Group" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Width="129" Click="btnCreateGroup_Click"/>
+                <Button x:Name="btnViewGroups" Content="View Groups" HorizontalAlignment="Left" Margin="0,53,0,0" VerticalAlignment="Top" Width="129" Click="btnViewGroups_Click"/>
+                <Button x:Name="btnSubmitProject" Content="Submit Project" HorizontalAlignment="Left" Margin="0,161,0,0" VerticalAlignment="Top" Width="129"/>
+                <Button x:Name="btnViewSubmissions" Content="View Submissions" HorizontalAlignment="Left" Margin="0,107,0,0" VerticalAlignment="Top" Width="129"/>
+                <Button x:Name="btnSLAPGroup" Content="Send SLAP to Group" HorizontalAlignment="Left" Margin="0,134,0,0" VerticalAlignment="Top" Width="129"/>
+            </Grid>
+        </Border>
+        <Border HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Height="92" Width="235" Background="#FFAABBC1" BorderBrush="#FF707070" BorderThickness="2">
+            <Label x:Name="lblSummary" Content="Summary Text"/>
+        </Border>
+        <Label Content="Project" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+
+    </Grid>
+</Page>

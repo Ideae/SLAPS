@@ -24,18 +24,13 @@ namespace iteration3wpf
         private DateTime _SubmitTime;
         public DateTime SubmitTime { get {return syncDown("SubmitTime", _SubmitTime); } set { _SubmitTime = syncUp("SubmitTime", value); } }
         [Synchronize]
-        private string _Summary;
-        public string Summary { get {return syncDown("Summary", _Summary); } set { _Summary = syncUp("Summary", value); } }
-        [Synchronize]
         private Group _SmGroup;
         public Group SmGroup { get {return syncDown("SmGroup", _SmGroup); } set { _SmGroup = syncUp("SmGroup", value); } }
-    
-    
-    
-    
-    
-    
-    
-    
+        [Synchronize]
+        private float _Mark;
+        public float Mark { get { return syncDown("Mark", _Mark); } set { _Mark = syncUp("Mark", value); } }
+        [Synchronize]
+        private string _InstructorComments;
+        public string InstructorComments { get { return syncDown("InstructorComments", _InstructorComments); } set { _InstructorComments = syncUp("InstructorComments", value); } }
     }
 }

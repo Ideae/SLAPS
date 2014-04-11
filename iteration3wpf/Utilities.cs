@@ -21,7 +21,7 @@ namespace iteration3wpf
             return o.GetType().ToString().LastWord('.');
         }
 
-        public static void CenterWindow(Window window)
+        public static void CenterWindow(this Window window)
         {
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
             double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;

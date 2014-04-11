@@ -22,15 +22,15 @@ namespace iteration3wpf.Windows
         public SendSLAPWindow()
         {
             InitializeComponent();
-            Utilities.CenterWindow(this);
-            if (MainWindow.mainWindow.activeUser.UserType == usertype.Admin)
+            this.CenterWindow();
+            if (MainWindow.ActiveUser.UserType == usertype.Admin)
             {
                 lblTitle.Content = "Send SLAP (Announcement)";
                 lblAddRecipients.Visibility = System.Windows.Visibility.Hidden;
                 btnAddRecipients.Visibility = System.Windows.Visibility.Hidden;
                 cmbCourses.Visibility = System.Windows.Visibility.Hidden;
             }
-            else if (MainWindow.mainWindow.activeUser.UserType == usertype.Instructor)
+            else if (MainWindow.ActiveUser.UserType == usertype.Instructor)
             {
                 lblTitle.Content = "Send SLAP (Message)";
                 lblAddRecipients.Visibility = System.Windows.Visibility.Hidden;

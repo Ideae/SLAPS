@@ -75,6 +75,9 @@
       <DependentUpon>CoursePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LFile.cs" />
+    <Compile Include="Pages\ProjectPage.xaml.cs">
+      <DependentUpon>ProjectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SQLiteDB.cs" />
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -87,8 +90,17 @@
     <Compile Include="Windows\CreateCourseWindow.xaml.cs">
       <DependentUpon>CreateCourseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\CreateGroupWindow.xaml.cs">
+      <DependentUpon>CreateGroupWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CreateProjectWindow.xaml.cs">
       <DependentUpon>CreateProjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditProjectWindow.xaml.cs">
+      <DependentUpon>EditProjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EvaluateSubmissionWindow.xaml.cs">
+      <DependentUpon>EvaluateSubmissionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
@@ -113,11 +125,21 @@
     <Compile Include="Windows\SendSLAPWindow.xaml.cs">
       <DependentUpon>SendSLAPWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ViewGroupsWindow.xaml.cs">
+      <DependentUpon>ViewGroupsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ViewSubmissionsWindow.xaml.cs">
+      <DependentUpon>ViewSubmissionsWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\CoursePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProjectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,7 +151,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\CreateGroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\CreateProjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditProjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EvaluateSubmissionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +200,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SendSLAPWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ViewGroupsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ViewSubmissionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

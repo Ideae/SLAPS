@@ -22,9 +22,6 @@ namespace iteration3wpf
         private Project _GrpProject;
         public Project GrpProject { get {return syncDown("GrpProject", _GrpProject); } set { _GrpProject = syncUp("Project", value); } }
         [Synchronize]
-        private float _Mark;
-        public float Mark { get {return syncDown("Mark", _Mark); } set { _Mark = syncUp("Mark", value); } }
-        [Synchronize]
         private Submission _GrpSubmission;
         public Submission GrpSubmission { get {return syncDown("GrpSubmission", _GrpSubmission); } set { _GrpSubmission = syncUp("Submission", value); } }
 

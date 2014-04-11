@@ -11,13 +11,13 @@
         <Label Content="Course Description" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="75" Margin="10,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287"/>
         <Label Content="Enrollment Deadline" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="177,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Course Start Data" HorizontalAlignment="Left" Margin="172,59,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="177,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Course End Date" HorizontalAlignment="Left" Margin="177,113,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="177,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Course End Date" HorizontalAlignment="Left" Margin="172,114,0,0" VerticalAlignment="Top"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="222,291,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button Content="OK" HorizontalAlignment="Left" Margin="142,291,0,0" VerticalAlignment="Top" Width="75"/>
+        <DatePicker x:Name="dateEnrollmentDeadline" HorizontalAlignment="Left" Margin="177,35,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dateStart" HorizontalAlignment="Left" Margin="177,85,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dateEnd" HorizontalAlignment="Left" Margin="177,140,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

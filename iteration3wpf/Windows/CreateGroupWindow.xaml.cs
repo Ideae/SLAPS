@@ -15,30 +15,24 @@ using System.Windows.Shapes;
 namespace iteration3wpf.Windows
 {
     /// <summary>
-    /// Interaction logic for RegisterUserWindow.xaml
+    /// Interaction logic for CreateGroupWindow.xaml
     /// </summary>
-    public partial class RegisterUserWindow : Window
+    public partial class CreateGroupWindow : Window
     {
-        public RegisterUserWindow()
+        public CreateGroupWindow()
         {
             InitializeComponent();
             this.CenterWindow();
-
-            cmbUsertype.Items.Add("Student");
-            cmbUsertype.Items.Add("Instructor");
-            cmbUsertype.Items.Add("Administrator");
-            cmbUsertype.SelectedIndex = 0;
-
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            MainWindow.mainWindow.IsEnabled = true;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            MainWindow.mainWindow.IsEnabled = true;
         }
     }
 }

@@ -15,20 +15,14 @@ using System.Windows.Shapes;
 namespace iteration3wpf.Windows
 {
     /// <summary>
-    /// Interaction logic for RegisterUserWindow.xaml
+    /// Interaction logic for EditProjectWindow.xaml
     /// </summary>
-    public partial class RegisterUserWindow : Window
+    public partial class EditProjectWindow : Window
     {
-        public RegisterUserWindow()
+        public EditProjectWindow()
         {
             InitializeComponent();
             this.CenterWindow();
-
-            cmbUsertype.Items.Add("Student");
-            cmbUsertype.Items.Add("Instructor");
-            cmbUsertype.Items.Add("Administrator");
-            cmbUsertype.SelectedIndex = 0;
-
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -36,7 +30,7 @@ namespace iteration3wpf.Windows
             MainWindow.mainWindow.IsEnabled = true;
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
