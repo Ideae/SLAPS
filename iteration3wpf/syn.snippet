@@ -24,7 +24,7 @@
       <Code Language="CSharp">
         <![CDATA[[Synchronize]
         private $type$ _$name$; 
-        public $type$ $name$ { get {return syncDown("$name$", _$name$); } set { _$name$ = sync("$name$", value); } }]]>
+        public $type$ $name$ { get {return syncDown("$name$", _$name$); } set { _$name$ = syncUp("$name$", value); } }]]>
       </Code>
     </Snippet>
   </CodeSnippet>

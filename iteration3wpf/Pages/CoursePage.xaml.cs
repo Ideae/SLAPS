@@ -20,9 +20,29 @@ namespace iteration3wpf
     /// </summary>
     public partial class CoursePage : Page
     {
-        public CoursePage()
+        Course course;
+        public CoursePage(Course c)
         {
+            course = c;
             InitializeComponent();
+            lblCourseName.Content = c.Title;
+            lblCourseCode.Content = c.CourseCode;
+            lblInstructor.Content = c.Instructor;
+            foreach (var a in c.Announcements)
+            {
+                Utilities.AddTextBlock(stkAnnouncements, a.Title, a.Content);
+            }
+        }
+
+        private void mouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Message m = Message.getNew();
+            m.Sender = MainWindow.mainWindow.activeUser;
+            m.Recievers.Add(course);
+            m.Title = "Welcome to " + course.CourseCode;
+            m.Content = "We are very happy to have you enrolled, we hope you learn a lot";
+
+            course.Announcements.Add(m);
         }
     }
 }

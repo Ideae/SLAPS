@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,8 +19,8 @@ namespace iteration3wpf
         private string _Summary;
         public string Summary { get {return syncDown("Summary", _Summary); } set { _Summary = syncUp("Summary", value); } }
         [Synchronize]
-        private List<Group> _Groups;
-        public List<Group> Groups { get {return syncDown("Groups", _Groups); } set { _Groups = syncUp("Groups", value); } }
+        private ObservableCollection<Group> _Groups = new ObservableCollection<Group>();
+        public ObservableCollection<Group> Groups { get {return syncDown("Groups", _Groups); } set { _Groups = syncUp("Groups", value); } }
         [Synchronize]
         private Course _PrjCourse;
         public Course PrjCourse { get {return syncDown("PrjCourse", _PrjCourse); } set { _PrjCourse = syncUp("PrjCourse", value); } }
@@ -27,14 +28,22 @@ namespace iteration3wpf
         private float _MaxMarks;
         public float MaxMarks { get {return syncDown("MaxMarks", _MaxMarks); } set { _MaxMarks = syncUp("MaxMarks", value); } }
         [Synchronize]
-        private List<LFile> _Attatchments;
-        public List<LFile> Attatchments { get {return syncDown("Attatchments", _Attatchments); } set { _Attatchments = syncUp("Attatchments", value); } }
-        
-        
+        private ObservableCollection<LFile> _Attatchments = new ObservableCollection<LFile>();
+        public ObservableCollection<LFile> Attatchments { get {return syncDown("Attatchments", _Attatchments); } set { _Attatchments = syncUp("Attatchments", value); } }
+
+        protected Project(int id)
+            : base(id)
+        {
+            _Attatchments.CollectionChanged +=delegate{Attatchments = _Attatchments;};
+            _Groups.CollectionChanged += delegate { Groups = _Groups; };
+
+            _Id = id;
+        }
         public override string ToString()
         {
             return Title;
         }
+
         
     }
 }

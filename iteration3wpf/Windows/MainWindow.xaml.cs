@@ -209,7 +209,7 @@ namespace iteration3wpf
             lblName.Content = activeUser.FirstName + " " + activeUser.LastName;
             lblUsertype.Content = activeUser.UserType;
 
-            foreach (var g in u.Groups) cmbCourse.Items.Add(g);
+            foreach (var g in u.Courses) cmbCourse.Items.Add(g);
             
         }
 
@@ -255,7 +255,7 @@ namespace iteration3wpf
 
         private void cmbCourse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            frameMainframe.Navigate(new CoursePage((Course)cmbCourse.SelectedItem));
         }
 
         private void btnPage1_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -34,18 +35,28 @@ namespace iteration3wpf
         private usertype _UserType;
         public usertype UserType { get {return syncDown("UserType", _UserType); } set { _UserType = syncUp("UserType", value); } }
         [Synchronize]
-        private List<Course> _Courses;
-        public List<Course> Courses { get {return syncDown("Courses", _Courses); } set { _Courses = syncUp("Courses", value); } }
+        private ObservableCollection<Course> _Courses = new ObservableCollection<Course>();
+        public ObservableCollection<Course> Courses { get {
+            return syncDown("Courses", _Courses);
+        } set { _Courses = syncUp("Courses", value); } }
         [Synchronize]
-        private List<Group> _Groups;
-        public List<Group> Groups { get {return syncDown("Groups", _Groups); } set { _Groups = syncUp("Groups", value); } }
+        private ObservableCollection<Group> _Groups = new ObservableCollection<Group>();
+        public ObservableCollection<Group> Groups { get {return syncDown("Groups", _Groups); } set { _Groups = syncUp("Groups", value); } }
         [Synchronize]
-        private List<Submission> _Submissions;
-        public List<Submission> Submissions { get {return syncDown("Submissions", _Submissions); } set { _Submissions = syncUp("Submissions", value); } }
+        private ObservableCollection<Submission> _Submissions = new ObservableCollection<Submission>();
+        public ObservableCollection<Submission> Submissions { get {return syncDown("Submissions", _Submissions); } set { _Submissions = syncUp("Submissions", value); } }
 
 
-        public User() { }
-        public User(DataRow data) { SetDataLite(data); }
+        private User(int id)
+            : base(id)
+        {
+            _Id = id;
+            _Courses.CollectionChanged += delegate {
+                Courses = _Courses; 
+            };
+            _Groups.CollectionChanged += delegate { Groups = _Groups; };
+            _Submissions.CollectionChanged += delegate { Submissions = _Submissions; };
+        }
 
         public static User login(string username, string password)
         {
@@ -58,7 +69,7 @@ namespace iteration3wpf
                 
                 Console.WriteLine(UserRow.Field<string>("Password"));
                 if (UserRow.Field<string>("Password") != password) return null;
-                else return new User(UserRow);
+                else return User.GetById((int)UserRow.Field<long>("Id"));
             }
         }
         public void changePassword() { } // method to change the user’s password
@@ -68,7 +79,8 @@ namespace iteration3wpf
         //Utils
         public override string ToString()
         {
-            return Username;
+            if (MainWindow.mainWindow.activeUser.UserType == usertype.Admin) return Username;
+            else return FirstName +" "+ LastName;
         }
 
     }

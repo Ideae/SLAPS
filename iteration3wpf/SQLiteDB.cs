@@ -243,7 +243,7 @@ public class SQLiteDB
     public DataRow getRowById(string table, int id)
     {
         DataTable t = GetDataTable("SELECT * FROM " + table +" WHERE Id=@param1;", id.ToString());
-        return t.Rows[0];
+        return (t.Rows.Count > 0) ? t.Rows[0] : null ;
     }
 }
 

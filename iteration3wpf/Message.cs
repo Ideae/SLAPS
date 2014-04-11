@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,13 +23,25 @@ namespace iteration3wpf
         private User _Sender;
         public User Sender { get {return syncDown("Sender", _Sender); } set { _Sender = syncUp("Sender", value); } }
         [Synchronize]
-        private List<Loadable> _Recievers;
-        public List<Loadable> Recievers { get {return syncDown("Recievers", _Recievers); } set { _Recievers = syncUp("Recievers", value); } }
+        private ObservableCollection<Loadable> _Recievers = new ObservableCollection<Loadable>();
+        public ObservableCollection<Loadable> Recievers { get {
+            return syncDown("Recievers", _Recievers); 
+        } set {
+            _Recievers = syncUp("Recievers", value); 
+        } }
         [Synchronize]
-        private List<LFile> _Attatchments;
-        public List<LFile> Attatchments { get {return syncDown("Attatchments", _Attatchments); } set { _Attatchments = syncUp("Attatchments", value); } }
+        private ObservableCollection<LFile> _Attatchments = new ObservableCollection<LFile>();
+        public ObservableCollection<LFile> Attatchments { get {return syncDown("Attatchments", _Attatchments); } set { _Attatchments = syncUp("Attatchments", value); } }
 
+        protected Message(int id) : base(id) 
+        {
+            _Recievers.CollectionChanged += delegate {
+                Recievers = _Recievers; 
+            };
+            _Attatchments.CollectionChanged += delegate { Attatchments = _Attatchments; };
 
+            _Id = id; 
+        }
         public override string ToString()
         {
             return Title;

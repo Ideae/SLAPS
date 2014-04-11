@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,8 +19,8 @@ namespace iteration3wpf
         private User _Submitter;
         public User Submitter { get {return syncDown("Submitter", _Submitter); } set { _Submitter = syncUp("Submitter", value); } }
         [Synchronize]
-        private List<LFile> _Files;
-        public List<LFile> Files { get {return syncDown("Files", _Files); } set { _Files = syncUp("Files", value); } }
+        private ObservableCollection<LFile> _Files = new ObservableCollection<LFile>();
+        public ObservableCollection<LFile> Files { get {return syncDown("Files", _Files); } set { _Files = syncUp("Files", value); } }
         [Synchronize]
         private DateTime _SubmitTime;
         public DateTime SubmitTime { get {return syncDown("SubmitTime", _SubmitTime); } set { _SubmitTime = syncUp("SubmitTime", value); } }
@@ -29,8 +30,14 @@ namespace iteration3wpf
         [Synchronize]
         private Group _SmGroup;
         public Group SmGroup { get {return syncDown("SmGroup", _SmGroup); } set { _SmGroup = syncUp("SmGroup", value); } }
-    
-    
+
+        protected Submission(int id)
+            : base(id)
+        {
+            _Id = id;
+            _Files.CollectionChanged += delegate { Files = _Files; }; ;
+
+        }
     
     
     

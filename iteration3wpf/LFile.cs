@@ -14,5 +14,11 @@ namespace iteration3wpf
         [Synchronize(true)]
         private string _Path;
         public string Path { get {return syncDown("Path", _Path); } set { _Path = syncUp("Path", value); } }
+
+        protected LFile(int id)
+            : base(id)
+        {
+            _Id = id;
+        }
     }
 }

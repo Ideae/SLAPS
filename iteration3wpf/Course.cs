@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,20 +16,33 @@ namespace iteration3wpf
         private string _CourseCode;
         public string CourseCode { get {return syncDown("CourseCode", _CourseCode); } set { _CourseCode = syncUp("CourseCode", value); } }
         [Synchronize]
+        private string _Title;
+        public string Title { get { return syncDown("Title", _Title); } set { _Title = syncUp("Title", value); } }
+        [Synchronize]
         private User _Instructor;
         public User Instructor { get {return syncDown("Instructor", _Instructor); } set { _Instructor = syncUp("Instructor", value); } }
         [Synchronize]
-        private List<Project> _Projects;
-        public List<Project> Projects { get {return syncDown("Projects", _Projects); } set { _Projects = syncUp("Projects", value); } }
+        private ObservableCollection<Project> _Projects = new ObservableCollection<Project>();
+        public ObservableCollection<Project> Projects { get {return syncDown("Projects", _Projects); } set { _Projects = syncUp("Projects", value); } }
         [Synchronize]
-        private List<Group> _Groups;
-        public List<Group> Groups { get {return syncDown("Groups", _Groups); } set { _Groups = syncUp("Groups", value); } }
+        private ObservableCollection<Group> _Groups = new ObservableCollection<Group>();
+        public ObservableCollection<Group> Groups { get {return syncDown("Groups", _Groups); } set { _Groups = syncUp("Groups", value); } }
         [Synchronize]
-        private List<User> _Students;
-        public List<User> Students { get {return syncDown("Students", _Students); } set { _Students = syncUp("Students", value); } }
+        private ObservableCollection<User> _Students = new ObservableCollection<User>();
+        public ObservableCollection<User> Students { get {return syncDown("Students", _Students); } set { _Students = syncUp("Students", value); } }
+        [Synchronize]
+        private ObservableCollection<Message> _Announcements = new ObservableCollection<Message>();
+        public ObservableCollection<Message> Announcements { get { return syncDown("Announcements", _Announcements); } set { _Announcements = syncUp("Announcements", value); } }
 
+        protected Course(int id) : base(id) 
+        {
+            _Id = id;
+            _Projects.CollectionChanged += delegate { Projects = _Projects; };
+            _Groups.CollectionChanged += delegate { Groups = _Groups; };
+            _Students.CollectionChanged += delegate { Students = _Students; };
+            _Announcements.CollectionChanged += delegate { Announcements = _Announcements; };
 
-
+        }
 
         public void addProject() { }
 
