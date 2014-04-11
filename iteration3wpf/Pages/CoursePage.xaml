@@ -8,8 +8,8 @@
 
     <Grid>
         <Rectangle x:Name="rectSLAPS" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="411" Stroke="Black" VerticalAlignment="Top" Width="435" Margin="0,0,-135,-111"/>
-        <Label Content="Course Announcements" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
-        <Border HorizontalAlignment="Left" Height="291" Margin="10,94,0,0" VerticalAlignment="Top" Width="402" BorderThickness="2" BorderBrush="#FF707070" >
+        <Label Content="Course Announcements" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
+        <Border HorizontalAlignment="Left" Height="248" Margin="10,137,0,0" VerticalAlignment="Top" Width="402" BorderThickness="2" BorderBrush="#FF707070" >
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="stkAnnouncements" Background="#FFAABBC1"/>
 
@@ -18,6 +18,7 @@
         </Border>
         <Label x:Name="lblCourseName" Content="Course Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
         <Label x:Name="lblCourseCode" Content="Course Code" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblInstructor" Content="Instructor" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

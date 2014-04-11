@@ -1,7 +1,7 @@
 ﻿<Window x:Class="iteration3wpf.Windows.CreateCourseWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="CreateCourseWindow" Height="362" Width="327" Closed="Window_Closed">
+        Title="Create Course" Height="362" Width="327" Closed="Window_Closed">
     <Grid>
         <Label Content="Create Course" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Course Title" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>

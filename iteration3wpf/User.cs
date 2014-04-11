@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace iteration3wpf
 {
-    public enum usertype{ Student, Admin, Instructor};
+    public enum usertype{ Student, Admin, Instructor };
     public sealed class User : Loadable<User>
     {
 
@@ -33,15 +33,15 @@ namespace iteration3wpf
         [Synchronize]
         private usertype _UserType;
         public usertype UserType { get { return _UserType; } set { _UserType = syncUp("UserType", value); } }
-        [Synchronize]
-        private List<Course> _Courses;
-        public List<Course> Courses { get { return _Courses; } set { _Courses = syncUp("Courses", value); } }
-        [Synchronize]
-        private List<Group> _Groups;
-        public List<Group> Groups { get { return _Groups; } set { _Groups = syncUp("Groups", value); } }
-        [Synchronize]
-        private List<Submission> _Submissions;
-        public List<Submission> Submissions { get { return _Submissions; } set { _Submissions = syncUp("Submissions", value); } }
+        //[Synchronize]
+        //private List<Course> _Courses;
+        //public List<Course> Courses { get { return _Courses; } set { _Courses = syncUp("Courses", value); } }
+        //[Synchronize]
+        //private List<Group> _Groups;
+        //public List<Group> Groups { get { return _Groups; } set { _Groups = syncUp("Groups", value); } }
+        //[Synchronize]
+        //private List<Submission> _Submissions;
+        //public List<Submission> Submissions { get { return _Submissions; } set { _Submissions = syncUp("Submissions", value); } }
 
 
         public User() { }

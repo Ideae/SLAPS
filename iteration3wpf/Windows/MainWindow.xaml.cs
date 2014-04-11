@@ -43,9 +43,9 @@ namespace iteration3wpf
             Utilities.CenterWindow(this);
             InitUser(usr);
 
-            this.Closed += (s, e) => Application.Current.Shutdown();
+            //this.Closed += (s, e) => Application.Current.Shutdown();
 
-            if (false && activeUser is Administrator)
+            if (false && activeUser.UserType == usertype.Admin) //change
             {
                 cmbCourse.Visibility = System.Windows.Visibility.Hidden;
             }
@@ -66,6 +66,8 @@ namespace iteration3wpf
             menuItemAccount.Items.Add(menuItemLogout);
 
             menuItemChangePassword.Click += menuItemChangePassword_Click;
+            menuItemLogout.Click += menuItemLogout_Click;
+
 
             pageDict = new Dictionary<AllPages, Page>()
             {
@@ -78,6 +80,15 @@ namespace iteration3wpf
 
             PopulateSidebar();
 
+        }
+
+        void menuItemLogout_Click(object sender, RoutedEventArgs e)
+        {
+            activeUser = null;
+            //push to database for good measure?
+            LoginScreen loginScreen = new LoginScreen();
+            loginScreen.Show();
+            this.Close();
         }
 
         void PopulateSidebar()
@@ -95,7 +106,7 @@ namespace iteration3wpf
             stackActions.Children.Add(homeItem);
             stackActions.Children.Add(sendSlaps);
 
-            if (activeUser is Administrator)
+            if (activeUser.UserType == usertype.Admin)
             {
                 //TreeViewItem registerUser = CreateTreeViewItem("Create a new User");
                 Button registerUser = CreateButton("Create a new User");
@@ -119,14 +130,24 @@ namespace iteration3wpf
                 return;
             }
 
-            if (activeUser is Student || activeUser is Instructor)
+            if (activeUser.UserType == usertype.Student || activeUser.UserType == usertype.Instructor)
             {
 
             }
-            if (activeUser is Instructor)
+            if (activeUser.UserType == usertype.Instructor)
             {
+                Button createProject = CreateButton("Create Project");
+                createProject.Click += createProject_Click;
 
+                stackActions.Children.Add(createProject);
             }
+        }
+
+        void createProject_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProjectWindow createProjectWindow = new CreateProjectWindow();
+            this.IsEnabled = false;
+            createProjectWindow.ShowDialog();
         }
 
         Button CreateButton(string text)
@@ -186,7 +207,7 @@ namespace iteration3wpf
             activeUser = u;
 
             lblName.Content = activeUser.FirstName + " " + activeUser.LastName;
-            lblUsertype.Content = activeUser.TypeName();
+            lblUsertype.Content = activeUser.UserType;
 
             
             cmbCourse.Items.Add("Smalltalk 5");

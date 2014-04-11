@@ -23,14 +23,14 @@ namespace iteration3wpf.Windows
         {
             InitializeComponent();
             Utilities.CenterWindow(this);
-            if (MainWindow.mainWindow.activeUser is Administrator)
+            if (MainWindow.mainWindow.activeUser.UserType == usertype.Admin)
             {
                 lblTitle.Content = "Send SLAP (Announcement)";
                 lblAddRecipients.Visibility = System.Windows.Visibility.Hidden;
                 btnAddRecipients.Visibility = System.Windows.Visibility.Hidden;
                 cmbCourses.Visibility = System.Windows.Visibility.Hidden;
             }
-            else if (MainWindow.mainWindow.activeUser is Instructor)
+            else if (MainWindow.mainWindow.activeUser.UserType == usertype.Instructor)
             {
                 lblTitle.Content = "Send SLAP (Message)";
                 lblAddRecipients.Visibility = System.Windows.Visibility.Hidden;

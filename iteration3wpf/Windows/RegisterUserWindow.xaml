@@ -1,7 +1,7 @@
 ﻿<Window x:Class="iteration3wpf.Windows.RegisterUserWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="RegisterUserWindow" Height="366" Width="239" Closed="Window_Closed">
+        Title="Register User" Height="366" Width="239" Closed="Window_Closed">
     <Grid>
         <Label Content="Register User" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="85"/>
         <Label Content="User Type" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
