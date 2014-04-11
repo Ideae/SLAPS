@@ -48,5 +48,10 @@ namespace iteration3wpf
                 Close();
             }
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

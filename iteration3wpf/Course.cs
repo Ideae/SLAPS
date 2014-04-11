@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iteration3wpf
 {
-    public class Course: Loadable<Course>
+    public class Course : Loadable<Course>
     {
         [Synchronize(true)]
         private int _Id;

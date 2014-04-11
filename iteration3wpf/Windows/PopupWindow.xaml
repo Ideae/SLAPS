@@ -4,8 +4,8 @@
         Title="PopupWindow" Height="181" Width="235">
     <Grid>
         <Label Content="Error message" HorizontalAlignment="Left" Margin="31,47,0,0" VerticalAlignment="Top" Width="177"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="31,103,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="OK" HorizontalAlignment="Left" Margin="133,103,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="133,119,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="53,119,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

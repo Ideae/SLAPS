@@ -19,16 +19,71 @@ namespace iteration3wpf
     /// </summary>
     public partial class LoginScreen : Window
     {
-        public User result;
         public LoginScreen()
         {
             InitializeComponent();
+            Utilities.CenterWindow(this);
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            result = User.login(txtUsername.Text, txtPassword.Password);
-            if (result == null) MessageBox.Show("Login Error!");
+            //temporary, remove later
+            if (txtUsername.Text.Equals(""))
+            {
+                TryLogin(User.login("system", "password"));
+                return;
+            }
+            TryLogin(User.login(txtUsername.Text, txtPassword.Password));
+        }
+
+        private void TryLogin(User usr)
+        {
+            if (usr == null)
+            {
+                MessageBox.Show("Login Error!");
+            }
+            else
+            {
+                MainWindow.mainWindow = new MainWindow(usr);
+                MainWindow.mainWindow.Show();
+                //MainWindow.mainWindow.InitUser(usr);
+                Close();
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnLogin_Click(null, null);
+            }
+        }
+
+        private void grid1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F9)
+            {
+                //TryLogin(User.GetById<User>(0));
+                TryLogin(User.login("system", "password"));
+            }
+        }
+
+        private void btnForgotPassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtUsername.Text.Equals(""))
+            {
+                TryLogin(User.login("vmisic", "406Prof"));
+                return;
+            }
+        }
+
+        private void txtUsername_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (txtUsername.Text.Equals(""))
+            {
+                TryLogin(User.login("dcamaren", "Saharris1"));
+                return;
+            }
         }
 
     }

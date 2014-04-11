@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace iteration3wpf
 {
-    public enum usertype{ Student, Admin, Instructor};
+    public enum usertype{ Student, Admin, Instructor };
     public sealed class User : Loadable<User>
     {
         
