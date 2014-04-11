@@ -19,8 +19,15 @@ namespace iteration3wpf.Windows
     /// </summary>
     public partial class EditProjectWindow : Window
     {
-        public EditProjectWindow()
+        Project p;
+        public EditProjectWindow(Project p)
         {
+            this.p = p;
+            txtMaxMarks.Text = p.MaxMarks.ToString();
+            txtProjectName.Text = p.Title;
+            txtSummary.Text = p.Summary;
+            dateDueDate.SelectedDate = p.DueDate;
+
             InitializeComponent();
             this.CenterWindow();
         }
@@ -32,6 +39,21 @@ namespace iteration3wpf.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Close();
+        }
+
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            float f = 0f;
+            if (!float.TryParse(txtMaxMarks.Text, out f))
+            {
+                MessageBox.Show("MaxMarks Incorrect");
+                return;
+            }
+            p.MaxMarks = f;
+            p.Title = txtProjectName.Text;
+            txtSummary.Text = p.Summary;
+            dateDueDate.SelectedDate = p.DueDate;
             Close();
         }
     }

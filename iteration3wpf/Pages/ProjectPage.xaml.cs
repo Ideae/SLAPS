@@ -21,10 +21,18 @@ namespace iteration3wpf.Pages
     /// </summary>
     public partial class ProjectPage : Page
     {
-        public ProjectPage()
+        public Project project;
+        public ProjectPage(Project project)
         {
+            this.project = project;
             InitializeComponent();
-            if (MainWindow.ActiveUser.UserType == usertype.Student)
+
+            lblProjectName.Content = project.Title;
+            lblMaxMarks.Content = project.MaxMarks;
+            lblDueDate.Content = project.DueDate.ToLongDateString();
+            lblSummary.Content = project.Summary;
+
+            if (MainWindow.activeUser.UserType == usertype.Student)
             {
                 btnEditProject.Visibility = System.Windows.Visibility.Hidden;
                 btnCreateGroup.Visibility = System.Windows.Visibility.Hidden;
@@ -54,20 +62,20 @@ namespace iteration3wpf.Pages
 
         private void btnEditProject_Click(object sender, RoutedEventArgs e)
         {
-            EditProjectWindow editProjectWindow = new EditProjectWindow();//pass a project in
+            EditProjectWindow editProjectWindow = new EditProjectWindow(project);
             MainWindow.mainWindow.IsEnabled = false;
             editProjectWindow.ShowDialog();
 
         }
         private void btnCreateGroup_Click(object sender, RoutedEventArgs e)
         {
-            CreateGroupWindow createGroupsWindow = new CreateGroupWindow();
+            CreateGroupWindow createGroupsWindow = new CreateGroupWindow(project);
             MainWindow.mainWindow.IsEnabled = false;
             createGroupsWindow.ShowDialog();
         }
         private void btnViewGroups_Click(object sender, RoutedEventArgs e)
         {
-            ViewGroupsWindow viewGroupsWindow = new ViewGroupsWindow();
+            ViewGroupsWindow viewGroupsWindow = new ViewGroupsWindow(project);
             MainWindow.mainWindow.IsEnabled = false;
             viewGroupsWindow.ShowDialog();
         }

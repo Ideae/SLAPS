@@ -29,8 +29,7 @@ namespace iteration3wpf
     public partial class MainWindow : Window
     {
         public static MainWindow mainWindow;
-        public static User ActiveUser { get { return mainWindow.activeUser; } }
-        public User activeUser;
+        public static User activeUser { get; set; }
 
         public Dictionary<AllPages, Page> pageDict;
 
@@ -39,11 +38,11 @@ namespace iteration3wpf
         //    mainWindow = new MainWindow();
         //}
 
-        public MainWindow(User usr)
+        public MainWindow()
         {
             InitializeComponent();
             this.CenterWindow();
-            InitUser(usr);
+            InitUser();
 
             //this.Closed += (s, e) => Application.Current.Shutdown();
 
@@ -194,8 +193,7 @@ namespace iteration3wpf
         private TreeViewItem CreateTreeViewItem(object obj)
         {
             TreeViewItem item = new TreeViewItem();
-            item.Header = obj.ToString();
-            item.Tag = obj;
+            item.Header = obj;
             return item;
         }
         public T GetPage<T>() where T : Page
@@ -204,14 +202,16 @@ namespace iteration3wpf
             return p != null ? (T)p : null;
         }
 
-        public void InitUser(User u)
+        public void InitUser()
         {
-            activeUser = u;
+            //activeUser = u;
 
             lblName.Content = activeUser.FirstName + " " + activeUser.LastName;
             lblUsertype.Content = activeUser.UserType;
 
-            foreach (var g in u.Courses) cmbCourse.Items.Add(g);
+            foreach (var g in activeUser.Courses) cmbCourse.Items.Add(g);
+
+            
             
         }
 
@@ -256,7 +256,17 @@ namespace iteration3wpf
 
         private void cmbCourse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            frameMainframe.Navigate(new CoursePage((Course)cmbCourse.SelectedItem));
+            Course c = (Course)cmbCourse.SelectedItem;
+            frameMainframe.Navigate(new CoursePage(c));
+
+            var projs = c.Projects;
+            foreach(var p in projs)
+            {
+                TreeViewItem projnode = CreateTreeViewItem(p);
+                projnode.MouseDoubleClick += (s, ee) => frameMainframe.Navigate(new ProjectPage((Project)projnode.Header));
+                treeViewMain.Items.Add(projnode);
+
+            }
         }
 
         private void btnPage1_Click(object sender, RoutedEventArgs e)
@@ -267,7 +277,7 @@ namespace iteration3wpf
         private void btnPage2_Click(object sender, RoutedEventArgs e)
         {
             //frameMainframe.Navigate(pageDict[AllPages.ViewMessages]);
-            frameMainframe.Navigate(new ProjectPage());
+            //frameMainframe.Navigate(new ProjectPage());
         }
 
         private void btnFile_Click(object sender, RoutedEventArgs e)

@@ -11,7 +11,7 @@
         <Label Content="Course Announcements" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
         <Border HorizontalAlignment="Left" Height="248" Margin="10,137,0,0" VerticalAlignment="Top" Width="402" BorderThickness="2" BorderBrush="#FF707070" >
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel x:Name="stkAnnouncements" Background="#FFAABBC1" MouseUp="mouseUp"/>
+                <StackPanel x:Name="stkAnnouncements" Background="#FFAABBC1"/>
 
             </ScrollViewer>
 

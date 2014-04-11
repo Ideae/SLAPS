@@ -10,7 +10,7 @@
         <Label Content="Summary" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtSummary" HorizontalAlignment="Left" Height="64" Margin="10,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="147,269,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="67,269,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="67,269,0,0" VerticalAlignment="Top" Width="75" Click="btnOK_Click"/>
         <Label Content="Due Date" HorizontalAlignment="Left" Margin="10,209,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="dateDueDate" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top"/>
 

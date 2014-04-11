@@ -78,26 +78,30 @@ namespace iteration3wpf
             if (t == typeof(string)) o = data.Field<string>(column);
             else if (t == typeof(int)) o = (int)data.Field<long>(column);
             else if (t.IsEnum) o = Enum.Parse(t, data.Field<string>(column));
+            else if (t == typeof(float)) o = (float?)data.Field<float?>(column) ?? -1f;
+            else if (t == typeof(DateTime)) o = DateTime.Parse(data.Field<string>(column) ?? DateTime.Now.ToString());
             else if (t.IsSubclassOf(typeof(Loadable)))
             {
                 MethodInfo mi = t.GetMethod("GetById", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-                o = mi.Invoke(null, new object[1] { ((int?)data.Field<long?>(column)) });
+                o = mi.Invoke(null, new object[1] { ((int?)data.Field<long?>(column)?? -1) });
             }
             else if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(ObservableCollection<>))
                 if (t.GetGenericArguments()[0] == typeof(Loadable))
                 {
                     string list = data.Field<string>(column);
-                    if(String.IsNullOrEmpty(list)) return new ObservableCollection<Loadable>();
-                    string[] items = list.Split(',');
-                        ObservableCollection<T> ret = new ObservableCollection<T>();
-                    foreach(string item in items) 
+                    if (String.IsNullOrEmpty(list)) return new ObservableCollection<Loadable>();
+                    string[] items = list.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    ObservableCollection<Loadable> ret = new ObservableCollection<Loadable>();
+                    foreach (string item in items)
                     {
                         string[] args = item.Split('#');
                         Type ga = Type.GetType(args[0]);
                         MethodInfo mi = ga.GetMethod("GetById", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-                        o = mi.Invoke(null, new object[1] { Int32.Parse(args[1]) });
+                        Object oo = mi.Invoke(null, new object[1] { Int32.Parse(args[1]) });
+                        ret.Add((Loadable)oo);
                     }
-                    
+                    o = ret;
+
                 }
                 else if (t.GetGenericArguments()[0].IsSubclassOf(typeof(Loadable)))
                 {
@@ -112,16 +116,18 @@ namespace iteration3wpf
         }
         private static string composeDB(Object o)
         {
-            string s = ""; 
+            string s = "";
             if (o is string) s = (string)o;
             else if (o is int) s = ((long)o).ToString();
+            else if (o is float) s = o.ToString();
             else if (o.GetType().IsEnum) s = ((Enum)o).ToString();
+            else if (o is DateTime) s = o.ToString();
             else if (o.GetType().IsSubclassOf(typeof(Loadable))) s = ((dynamic)o).Id.ToString();
             else if (o.GetType().IsGenericType && o.GetType().GetGenericTypeDefinition() == typeof(ObservableCollection<>))
                 if (o.GetType().GetGenericArguments()[0] == typeof(Loadable))
                 {
                     dynamic d = (dynamic)o;
-                    foreach (dynamic a in d) { s = s + "," + a.GetType().Namespace + "." + o.GetType().Name + "#" + a.Id; }
+                    foreach (dynamic a in d) { s = s + "," + a.GetType().Namespace + "." + a.GetType().Name + "#" + a.Id; }
                 }
                 else if (o.GetType().GetGenericArguments()[0].IsSubclassOf(typeof(Loadable)))
                 {
@@ -138,6 +144,7 @@ namespace iteration3wpf
 
         public static T GetById(int id)
         {
+            if (id == -1) return default(T);
             return loadedCache.GetOrAdd(id, _addDelegate);
         }
 
@@ -154,7 +161,9 @@ namespace iteration3wpf
         protected V syncUp<V>(string propName, V value)
         {
             V oldVal = (V)this.GetType().GetProperty(propName).GetValue(this);
-            V oldValDB = (V)parseDB(SQLiteDB.main.getRowById(TableName, this.Id), typeof(V), propName);
+            DataRow d = SQLiteDB.main.getRowById(TableName, this.Id);
+                Object o = parseDB(d, typeof(V), propName);
+            V oldValDB = (V)o;
 
                 SQLiteDB.main.Update(TableName, new Dictionary<string, string>() { { propName, composeDB(value) } }, "Id=" + this.Id);
                 return value;

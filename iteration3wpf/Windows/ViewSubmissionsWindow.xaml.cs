@@ -87,7 +87,7 @@ namespace iteration3wpf.Windows
                 sp.Children.Add(l3);
 
             }
-            if (MainWindow.ActiveUser.UserType == usertype.Instructor)
+            if (MainWindow.activeUser.UserType == usertype.Instructor)
             {
                 Button b = new Button();
                 b.Content = "Evaluate";

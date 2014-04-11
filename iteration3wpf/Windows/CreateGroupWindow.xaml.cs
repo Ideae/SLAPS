@@ -19,8 +19,10 @@ namespace iteration3wpf.Windows
     /// </summary>
     public partial class CreateGroupWindow : Window
     {
-        public CreateGroupWindow()
+        Project p;
+        public CreateGroupWindow(Project p)
         {
+            this.p = p;
             InitializeComponent();
             this.CenterWindow();
         }

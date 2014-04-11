@@ -28,6 +28,9 @@ namespace iteration3wpf
         private float _MaxMarks;
         public float MaxMarks { get {return syncDown("MaxMarks", _MaxMarks); } set { _MaxMarks = syncUp("MaxMarks", value); } }
         [Synchronize]
+        private DateTime _DueDate;
+        public DateTime DueDate { get { return syncDown("DueDate", _DueDate); } set { _DueDate = syncUp("DueDate", value); } }
+        [Synchronize]
         private ObservableCollection<LFile> _Attatchments = new ObservableCollection<LFile>();
         public ObservableCollection<LFile> Attatchments { get {return syncDown("Attatchments", _Attatchments); } set { _Attatchments = syncUp("Attatchments", value); } }
 

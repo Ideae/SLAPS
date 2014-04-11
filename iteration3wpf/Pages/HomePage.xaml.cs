@@ -28,12 +28,21 @@ namespace iteration3wpf
 
         public void PopulateHomePage()
         {
-            Utilities.AddTextBlock(stkAnnouncements, "Announcement 1", "This announcement would normally be important.");
-            Utilities.AddTextBlock(stkAnnouncements, "Announcement 2", "Yeah, right.");
-            Utilities.AddTextBlock(stkAnnouncements, "3", "3");
-            Utilities.AddTextBlock(stkAnnouncements, "4", "4");
-            Utilities.AddTextBlock(stkAnnouncements, "5", "5");
-            Utilities.AddTextBlock(stkAnnouncements, "6", "6");
+            //Utilities.AddTextBlock(stkAnnouncements, "Announcement 1", "This announcement would normally be important.");
+            //Utilities.AddTextBlock(stkAnnouncements, "Announcement 2", "Yeah, right.");
+            //Utilities.AddTextBlock(stkAnnouncements, "3", "3");
+            //Utilities.AddTextBlock(stkAnnouncements, "4", "4");
+            //Utilities.AddTextBlock(stkAnnouncements, "5", "5");
+            //Utilities.AddTextBlock(stkAnnouncements, "6", "6");
+
+            foreach(var m in User.GetById(0).Messages)
+            {
+                Utilities.AddTextBlock(stkAnnouncements, m.Title, m.Content);
+            }
+            foreach (Message m in MainWindow.activeUser.Messages)
+            {
+                Utilities.AddTextBlock(stkSLAPS, m.Title, m.Content);
+            }
         }
     }
 }

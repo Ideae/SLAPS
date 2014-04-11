@@ -32,17 +32,18 @@ namespace iteration3wpf
             {
                 Utilities.AddTextBlock(stkAnnouncements, a.Title, a.Content);
             }
+            
         }
 
-        private void mouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Message m = Message.getNew();
-            m.Sender = MainWindow.mainWindow.activeUser;
-            m.Recievers.Add(course);
-            m.Title = "Welcome to " + course.CourseCode;
-            m.Content = "We are very happy to have you enrolled, we hope you learn a lot";
-
-            course.Announcements.Add(m);
-        }
+        //private void mouseUp(object sender, MouseButtonEventArgs e)
+        //{
+        //    Message m = Message.getNew();
+        //    m.Sender = MainWindow.mainWindow.activeUser;
+        //    m.Recievers.Add(course);
+        //    m.Title = "Welcome to " + course.CourseCode;
+        //    m.Content = "We are very happy to have you enrolled, we hope you learn a lot";
+        //
+        //    course.Announcements.Add(m);
+        //}
     }
 }

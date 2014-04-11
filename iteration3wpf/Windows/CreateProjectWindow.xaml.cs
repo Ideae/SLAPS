@@ -23,6 +23,15 @@ namespace iteration3wpf.Windows
         {
             InitializeComponent();
             this.CenterWindow();
+            foreach(Course c in MainWindow.mainWindow.cmbCourse.Items)
+            {
+                cmbCourse.Items.Add(c);
+            }
+            if (MainWindow.mainWindow.cmbCourse.SelectedIndex >= 0)
+            {
+                cmbCourse.SelectedIndex = MainWindow.mainWindow.cmbCourse.SelectedIndex;
+            }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,6 +42,33 @@ namespace iteration3wpf.Windows
         private void Window_Closed(object sender, EventArgs e)
         {
             MainWindow.mainWindow.IsEnabled = true;
+        }
+
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            bool thisIsntWorking = cmbCourse.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtMaxMarks.Text)
+                || string.IsNullOrWhiteSpace(txtProjectName.Text) || string.IsNullOrWhiteSpace(txtSummary.Text)
+                || dateDueDate.SelectedDate == null;
+            if (thisIsntWorking)
+            {
+                MessageBox.Show("Please fill in all requirements.");
+                return;
+            }
+            float f = 0f;
+            if (!float.TryParse(txtMaxMarks.Text, out f))
+            {
+                MessageBox.Show("MaxMarks Incorrect");
+                return;
+            }
+            Course c = (Course)cmbCourse.SelectedItem;
+            Project p = Project.getNew();
+            p.Summary = txtSummary.Text;
+            p.Title = txtProjectName.Text;
+            p.PrjCourse = c;
+            p.MaxMarks = f;
+            p.DueDate = dateDueDate.SelectedDate ?? DateTime.Now;
+            c.Projects.Add(p);
+            Close();
         }
     }
 }

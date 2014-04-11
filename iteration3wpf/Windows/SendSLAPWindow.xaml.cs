@@ -19,34 +19,23 @@ namespace iteration3wpf.Windows
     /// </summary>
     public partial class SendSLAPWindow : Window
     {
+        AddRecipientsWindow arw;
         public SendSLAPWindow()
         {
             InitializeComponent();
             this.CenterWindow();
-            if (MainWindow.ActiveUser.UserType == usertype.Admin)
+            if (MainWindow.activeUser.UserType == usertype.Admin)
             {
                 lblTitle.Content = "Send SLAP (Announcement)";
                 lblAddRecipients.Visibility = System.Windows.Visibility.Hidden;
                 btnAddRecipients.Visibility = System.Windows.Visibility.Hidden;
-                cmbCourses.Visibility = System.Windows.Visibility.Hidden;
-            }
-            else if (MainWindow.ActiveUser.UserType == usertype.Instructor)
-            {
-                lblTitle.Content = "Send SLAP (Message)";
-                lblAddRecipients.Visibility = System.Windows.Visibility.Hidden;
-                btnAddRecipients.Visibility = System.Windows.Visibility.Hidden;
-                //cmbCourses.Visibility = System.Windows.Visibility.Visible;
-
-                cmbCourses.Items.Add("All Courses");
-                
             }
             else
             {
                 lblTitle.Content = "Send SLAP (Message)";
-                //lblAddRecipients.Visibility = System.Windows.Visibility.Visible;
-                //btnAddRecipients.Visibility = System.Windows.Visibility.Visible;
-                cmbCourses.Visibility = System.Windows.Visibility.Hidden;
             }
+            arw = new AddRecipientsWindow(this);
+
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -56,12 +45,67 @@ namespace iteration3wpf.Windows
 
         private void btnAddRecipients_Click(object sender, RoutedEventArgs e)
         {
-            //implement
+            this.IsEnabled = false;
+            arw.Show();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
             MainWindow.mainWindow.IsEnabled = true;
+        }
+
+        private void btnSend_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtMessage.Text) || string.IsNullOrWhiteSpace(txtSubject.Text))
+            {
+                MessageBox.Show("Please complete the forms.");
+                return;
+            }
+            Message m = Message.getNew();
+            m.Title = txtSubject.Text;
+            m.Content = txtMessage.Text;
+            m.Sender = MainWindow.activeUser;
+            if (MainWindow.activeUser.UserType == usertype.Admin)
+            {
+                m.Recievers.Add(User.GetById(0));
+                User.GetById(0).Messages.Add(m);
+            }
+            else
+            {
+                foreach(DataRowWrapper q in arw.listAdded.Items)
+                {
+                    if (q.type.Equals("Students") || q.type.Equals("Instructors") || q.type.Equals("Administrators"))
+                    {
+                        User u = User.GetById(q.ID);
+                        m.Recievers.Add(u);
+                        u.Messages.Add(m);
+                    }
+                    else if (q.type.Equals("Courses"))
+                    {
+                        Course c = Course.GetById(q.ID);
+                        m.Recievers.Add(c);
+                        c.Announcements.Add(m);
+                    }
+                    else if (q.type.Equals("Groups"))
+                    {
+                        Group g = Group.GetById(q.ID);
+                        foreach(User u in g.Members)
+                        {
+                            if (u != MainWindow.activeUser)
+                            {
+                                m.Recievers.Add(u);
+                                u.Messages.Add(m);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+
+            
+            MessageBox.Show("Message was sent.");
+            arw.Close();
+            Close();
         }
     }
 }

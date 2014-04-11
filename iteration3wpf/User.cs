@@ -45,6 +45,9 @@ namespace iteration3wpf
         [Synchronize]
         private ObservableCollection<Submission> _Submissions = new ObservableCollection<Submission>();
         public ObservableCollection<Submission> Submissions { get {return syncDown("Submissions", _Submissions); } set { _Submissions = syncUp("Submissions", value); } }
+        [Synchronize]
+        private ObservableCollection<Message> _Messages = new ObservableCollection<Message>();
+        public ObservableCollection<Message> Messages { get { return syncDown("Messages", _Messages); } set { _Messages = syncUp("Messages", value); } }
 
 
         private User(int id)
@@ -55,6 +58,7 @@ namespace iteration3wpf
                 Courses = _Courses; 
             };
             _Groups.CollectionChanged += delegate { Groups = _Groups; };
+            _Groups.CollectionChanged += delegate { Messages = _Messages; };
             _Submissions.CollectionChanged += delegate { Submissions = _Submissions; };
         }
 
@@ -79,7 +83,7 @@ namespace iteration3wpf
         //Utils
         public override string ToString()
         {
-            if (MainWindow.mainWindow.activeUser.UserType == usertype.Admin) return Username;
+            if (MainWindow.activeUser.UserType == usertype.Admin) return Username;
             else return FirstName +" "+ LastName;
         }
 

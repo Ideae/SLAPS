@@ -19,8 +19,10 @@ namespace iteration3wpf.Windows
     /// </summary>
     public partial class ViewGroupsWindow : Window
     {
-        public ViewGroupsWindow()
+        Project p;
+        public ViewGroupsWindow(Project p)
         {
+            this.p = p;
             InitializeComponent();
             this.CenterWindow();
 

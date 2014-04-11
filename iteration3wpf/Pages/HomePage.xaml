@@ -19,7 +19,7 @@
 
         </Border>
         <Border HorizontalAlignment="Left" Height="158" Margin="10,225,0,0" VerticalAlignment="Top" Width="406" BorderThickness="2" BorderBrush="#FF707070" >
-            <StackPanel x:Name="stkAnnouncements1" Background="#FFAABBC1"/>
+            <StackPanel x:Name="stkSLAPS" Background="#FFAABBC1"/>
 
         </Border>
         <Label Content="Home" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>

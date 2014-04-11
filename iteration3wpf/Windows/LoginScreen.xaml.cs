@@ -44,7 +44,8 @@ namespace iteration3wpf
             }
             else
             {
-                MainWindow.mainWindow = new MainWindow(usr);
+                MainWindow.activeUser = usr;
+                MainWindow.mainWindow = new MainWindow();
                 MainWindow.mainWindow.Show();
                 //MainWindow.mainWindow.InitUser(usr);
                 Close();
