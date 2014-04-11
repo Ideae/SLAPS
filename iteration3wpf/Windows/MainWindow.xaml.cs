@@ -209,8 +209,7 @@ namespace iteration3wpf
             lblName.Content = activeUser.FirstName + " " + activeUser.LastName;
             lblUsertype.Content = activeUser.UserType;
 
-            
-            cmbCourse.Items.Add("Smalltalk 5");
+            foreach (var g in u.Groups) cmbCourse.Items.Add(g);
             
         }
 

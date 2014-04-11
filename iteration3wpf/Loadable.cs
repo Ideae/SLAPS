@@ -160,5 +160,5 @@ namespace iteration3wpf
         public Synchronize(bool lite = false) { this.lite = lite; }
     }
 
-    public interface Loadable { }
+    public class Loadable { }
 }
