@@ -233,16 +233,16 @@ public class SQLiteDB
         }
     }
 
-    public static int[] decodeList(string s)
+    public T Sync<T>(string table, int id, string column)
     {
-        if (s == null) return new int[0];
-        string[] ss = s.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-        return ss.Select<string, int>((sss) => Int32.Parse(s)).ToArray();
+        DataTable t = GetDataTable("SELECT @param1 FROM @param2 WHERE Id=@param3;", column, table,  id.ToString());
+        return t.Rows[0].Field<T>(0);
     }
+
 
     public DataRow getRowById(string table, int id)
     {
-        DataTable t = GetDataTable("SELECT * FROM " + table +" WHERE Id='@param1';", id.ToString());
+        DataTable t = GetDataTable("SELECT * FROM " + table +" WHERE Id=@param1;", id.ToString());
         return t.Rows[0];
     }
 }

@@ -185,7 +185,7 @@ namespace iteration3wpf
         {
             activeUser = u;
 
-            lblName.Content = activeUser.firstName + " " + activeUser.lastName;
+            lblName.Content = activeUser.FirstName + " " + activeUser.LastName;
             lblUsertype.Content = activeUser.TypeName();
 
             

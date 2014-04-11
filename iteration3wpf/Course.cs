@@ -6,23 +6,35 @@ using System.Threading.Tasks;
 
 namespace iteration3wpf
 {
-    public class Course
+    public class Course: Loadable<Course>
     {
-        public string name { get; set; }
-        public Instructor instructor { get; set; }
-        public List<Student> enrolledStudents { get; set; }
-        public List<Group> groups { get; set; }
-        public List<Project> assignedProjects { get; set; }
+        [Synchronize]
+        private int _Id;
+        public override int Id { get { return _Id; } set { _Id = syncUp("Id", value); } }
+        [Synchronize]
+        private string _CourseCode;
+        public string CourseCode { get { return _CourseCode; } set { _CourseCode = syncUp("CourseCode", value); } }
+        [Synchronize]
+        private User _Instructor;
+        public User Instructor { get { return _Instructor; } set { _Instructor = syncUp("Instructor", value); } }
+        [Synchronize]
+        private List<Project> _Projects;
+        public List<Project> Projects { get { return _Projects; } set { _Projects = syncUp("Projects", value); } }
+        [Synchronize]
+        private List<Group> _Groups;
+        public List<Group> Groups { get { return _Groups; } set { _Groups = syncUp("Groups", value); } }
+        [Synchronize]
+        private List<User> _Students;
+        public List<User> Students { get { return _Students; } set { _Students = syncUp("Students", value); } }
+
+
+
+
         public void addProject() { }
 
         public override string ToString()
         {
-            return name;
-        }
-
-        internal static Course getById(int i)
-        {
-            throw new NotImplementedException();
+            return CourseCode;
         }
     }
 }
