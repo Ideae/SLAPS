@@ -129,6 +129,7 @@
     <Compile Include="Windows\SendSLAPWindow.xaml.cs">
       <DependentUpon>SendSLAPWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Student.cs" />
     <Compile Include="Windows\ViewGroupsWindow.xaml.cs">
       <DependentUpon>ViewGroupsWindow.xaml</DependentUpon>
     </Compile>
