@@ -22,14 +22,13 @@ namespace iteration3wpf.Windows
         Project p;
         public EditProjectWindow(Project p)
         {
+            InitializeComponent();
+            this.CenterWindow();
             this.p = p;
             txtMaxMarks.Text = p.MaxMarks.ToString();
             txtProjectName.Text = p.Title;
             txtSummary.Text = p.Summary;
             dateDueDate.SelectedDate = p.DueDate;
-
-            InitializeComponent();
-            this.CenterWindow();
         }
 
         private void Window_Closed(object sender, EventArgs e)
