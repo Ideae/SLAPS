@@ -21,10 +21,10 @@ namespace iteration3wpf
         public ObservableCollection<User> Members { get {return syncDown("Members", _Members); } set { _Members = syncUp("Members", value); } }
         [Synchronize]
         private Project _GrpProject;
-        public Project GrpProject { get {return syncDown("GrpProject", _GrpProject); } set { _GrpProject = syncUp("Project", value); } }
+        public Project GrpProject { get { return syncDown("GrpProject", _GrpProject); } set { _GrpProject = syncUp("GrpProject", value); } }
         [Synchronize]
         private Submission _GrpSubmission;
-        public Submission GrpSubmission { get {return syncDown("GrpSubmission", _GrpSubmission); } set { _GrpSubmission = syncUp("Submission", value); } }
+        public Submission GrpSubmission { get { return syncDown("GrpSubmission", _GrpSubmission); } set { _GrpSubmission = syncUp("GrpSubmission", value); } }
 
         protected Group(int id)
             : base(id)

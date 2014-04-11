@@ -77,6 +77,8 @@ namespace iteration3wpf.Windows
             }
 
             Group g = Group.getNew();
+            g.GrpProject = p;
+            g.Name = txtGroupName.Text;
             foreach( User u in listAdded.Items)
             {
                 g.Members.Add(u);
