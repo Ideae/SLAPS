@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iteration3wpf.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,6 +55,8 @@ namespace iteration3wpf.Windows
             txtSummary.Text = p.Summary;
             dateDueDate.SelectedDate = p.DueDate;
             Close();
+            MainWindow.mainWindow.UpdateTreeView();
+            MainWindow.mainWindow.frameMainframe.Navigate(new ProjectPage(p));
         }
     }
 }

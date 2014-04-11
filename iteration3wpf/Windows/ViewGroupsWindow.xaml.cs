@@ -26,26 +26,26 @@ namespace iteration3wpf.Windows
             InitializeComponent();
             this.CenterWindow();
 
-            List<string> strs = new List<string>() { "1", "2", "3" };
-            AddGroup("first", strs);
-            AddGroup("second", strs);
-            AddGroup("third", strs);
+            foreach(var g in p.Groups)
+            {
+                AddGroup(g);
+            }
         }
 
-        private void AddGroup(string name, List<string> names)
+        private void AddGroup(Group g)
         {
             //GroupBox gbox = new GroupBox();
             //gbox.Header = name;
 
             Expander exp = new Expander();
             stkGroups.Children.Add(exp);
-            exp.Header = name;
+            exp.Header = g.Name;
             StackPanel sp = new StackPanel();
             exp.Content = sp;
-            foreach(var n in names)
+            foreach(var n in g.Members)
             {
                 Label l = new Label();
-                l.Content = name + n;
+                l.Content = n.FirstName + " " + n.LastName;
                 sp.Children.Add(l);
             }
         }

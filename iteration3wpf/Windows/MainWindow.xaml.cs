@@ -259,13 +259,26 @@ namespace iteration3wpf
             Course c = (Course)cmbCourse.SelectedItem;
             frameMainframe.Navigate(new CoursePage(c));
 
-            var projs = c.Projects;
-            foreach(var p in projs)
-            {
-                TreeViewItem projnode = CreateTreeViewItem(p);
-                projnode.MouseDoubleClick += (s, ee) => frameMainframe.Navigate(new ProjectPage((Project)projnode.Header));
-                treeViewMain.Items.Add(projnode);
+            UpdateTreeView();
+        }
 
+        public void UpdateTreeView()
+        {
+            int c = treeViewMain.Items.Count;
+            for(int i = 0; i < c; i++)
+            {
+                treeViewMain.Items.RemoveAt(0);
+            }
+            if (cmbCourse.SelectedIndex != -1)
+            {
+                var projs = (cmbCourse.SelectedItem as Course).Projects;
+                foreach (var p in projs)
+                {
+                    TreeViewItem projnode = CreateTreeViewItem(p);
+                    projnode.MouseDoubleClick += (s, ee) => frameMainframe.Navigate(new ProjectPage((Project)projnode.Header));
+                    treeViewMain.Items.Add(projnode);
+
+                }
             }
         }
 

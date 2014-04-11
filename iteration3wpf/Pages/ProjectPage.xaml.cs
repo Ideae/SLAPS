@@ -55,6 +55,7 @@ namespace iteration3wpf.Pages
             else
             {
                 btnSubmitProject.Visibility = System.Windows.Visibility.Hidden;
+                btnSLAPGroup.Visibility = System.Windows.Visibility.Hidden;
                 //btnViewSubmissions.Visibility = System.Windows.Visibility.Hidden;
 
             }
@@ -78,6 +79,20 @@ namespace iteration3wpf.Pages
             ViewGroupsWindow viewGroupsWindow = new ViewGroupsWindow(project);
             MainWindow.mainWindow.IsEnabled = false;
             viewGroupsWindow.ShowDialog();
+        }
+
+        private void btnViewSubmissions_Click(object sender, RoutedEventArgs e)
+        {
+            ViewSubmissionsWindow viewSubmissionsWindow = new ViewSubmissionsWindow(project);
+            MainWindow.mainWindow.IsEnabled = false;
+            if (!viewSubmissionsWindow.AlreadyClosed)
+            {
+                viewSubmissionsWindow.ShowDialog();
+            }
+            else
+            {
+                MainWindow.mainWindow.IsEnabled = true;
+            }
         }
     }
 }

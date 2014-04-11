@@ -28,7 +28,7 @@
                 <Button x:Name="btnCreateGroup" Content="Create Group" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Width="129" Click="btnCreateGroup_Click"/>
                 <Button x:Name="btnViewGroups" Content="View Groups" HorizontalAlignment="Left" Margin="0,53,0,0" VerticalAlignment="Top" Width="129" Click="btnViewGroups_Click"/>
                 <Button x:Name="btnSubmitProject" Content="Submit Project" HorizontalAlignment="Left" Margin="0,161,0,0" VerticalAlignment="Top" Width="129"/>
-                <Button x:Name="btnViewSubmissions" Content="View Submissions" HorizontalAlignment="Left" Margin="0,107,0,0" VerticalAlignment="Top" Width="129"/>
+                <Button x:Name="btnViewSubmissions" Content="View Submissions" HorizontalAlignment="Left" Margin="0,107,0,0" VerticalAlignment="Top" Width="129" Click="btnViewSubmissions_Click"/>
                 <Button x:Name="btnSLAPGroup" Content="Send SLAP to Group" HorizontalAlignment="Left" Margin="0,134,0,0" VerticalAlignment="Top" Width="129"/>
             </Grid>
         </Border>

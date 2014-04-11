@@ -19,16 +19,54 @@ namespace iteration3wpf.Windows
     /// </summary>
     public partial class ViewSubmissionsWindow : Window
     {
-        public ViewSubmissionsWindow()
+        public Project p;
+        public bool AlreadyClosed = false;
+        public ViewSubmissionsWindow(Project p)
         {
+            this.p = p;
             InitializeComponent();
             this.CenterWindow();
 
-            List<Submission> submissions = new List<Submission>(); //get from caller
-            foreach(var s in submissions)
+            int count = 0;
+            if (MainWindow.activeUser.UserType == usertype.Instructor)
             {
-                AddSubmission(s);
+                foreach(Group g in p.Groups)
+                {
+                    if (g.GrpSubmission != null)
+                    {
+                        AddSubmission(g.GrpSubmission);
+                        count++;
+                    }
+                }
+                if (count == 0)
+                {
+                    MessageBox.Show("There are no submissions!");
+                    AlreadyClosed = true;
+                    Close();
+                }
             }
+            else if (MainWindow.activeUser.UserType == usertype.Student)
+            {
+                foreach (Group g in p.Groups)
+                {
+                    if (MainWindow.activeUser.Groups.Contains(g))
+                    {
+                        if (g.GrpSubmission != null)
+                        {
+                            AddSubmission(g.GrpSubmission);
+                            count++;
+                            break;
+                        }
+                    }
+                }
+                if (count == 0)
+                {
+                    MessageBox.Show("There are no submissions!");
+                    AlreadyClosed = true;
+                    Close();
+                }
+            }
+
 
         }
 
