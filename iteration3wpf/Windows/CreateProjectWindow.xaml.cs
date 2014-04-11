@@ -54,8 +54,8 @@ namespace iteration3wpf.Windows
                 MessageBox.Show("Please fill in all requirements.");
                 return;
             }
-            float f = 0f;
-            if (!float.TryParse(txtMaxMarks.Text, out f))
+            int i = 0;
+            if (!int.TryParse(txtMaxMarks.Text, out i))
             {
                 MessageBox.Show("MaxMarks Incorrect");
                 return;
@@ -65,7 +65,7 @@ namespace iteration3wpf.Windows
             p.Summary = txtSummary.Text;
             p.Title = txtProjectName.Text;
             p.PrjCourse = c;
-            p.MaxMarks = f;
+            p.MaxMarks = i;
             p.DueDate = dateDueDate.SelectedDate ?? DateTime.Now;
             c.Projects.Add(p);
             Close();

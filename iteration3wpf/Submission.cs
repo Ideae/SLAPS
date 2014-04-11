@@ -28,8 +28,8 @@ namespace iteration3wpf
         private Group _SmGroup;
         public Group SmGroup { get {return syncDown("SmGroup", _SmGroup); } set { _SmGroup = syncUp("SmGroup", value); } }
         [Synchronize]
-        private float _Mark;
-        public float Mark { get { return syncDown("Mark", _Mark); } set { _Mark = syncUp("Mark", value); } }
+        private int _Mark;
+        public int Mark { get { return syncDown("Mark", _Mark); } set { _Mark = syncUp("Mark", value); } }
         [Synchronize]
         private string _InstructorComments;
         public string InstructorComments { get { return syncDown("InstructorComments", _InstructorComments); } set { _InstructorComments = syncUp("InstructorComments", value); } }

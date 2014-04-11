@@ -43,13 +43,13 @@ namespace iteration3wpf.Windows
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            float f = 0f;
-            if (!float.TryParse(txtMaxMarks.Text, out f))
+            int i = 0;
+            if (!int.TryParse(txtMaxMarks.Text, out i))
             {
                 MessageBox.Show("MaxMarks Incorrect");
                 return;
             }
-            p.MaxMarks = f;
+            p.MaxMarks = i;
             p.Title = txtProjectName.Text;
             txtSummary.Text = p.Summary;
             dateDueDate.SelectedDate = p.DueDate;

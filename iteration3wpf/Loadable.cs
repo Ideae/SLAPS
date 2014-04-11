@@ -76,7 +76,7 @@ namespace iteration3wpf
 
             Object o = null;
             if (t == typeof(string)) o = data.Field<string>(column);
-            else if (t == typeof(int)) o = (int)data.Field<long>(column);
+            else if (t == typeof(int)) o = (int)(data.Field<long?>(column) ?? -1);
             else if (t.IsEnum) o = Enum.Parse(t, data.Field<string>(column));
             else if (t == typeof(float)) o = (float?)data.Field<float?>(column) ?? -1f;
             else if (t == typeof(DateTime)) o = DateTime.Parse(data.Field<string>(column) ?? DateTime.Now.ToString());
@@ -118,7 +118,7 @@ namespace iteration3wpf
         {
             string s = "";
             if (o is string) s = (string)o;
-            else if (o is int) s = ((long)o).ToString();
+            else if (o is int) s = ((long)((int)o)).ToString();
             else if (o is float) s = o.ToString();
             else if (o.GetType().IsEnum) s = ((Enum)o).ToString();
             else if (o is DateTime) s = o.ToString();

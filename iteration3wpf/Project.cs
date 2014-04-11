@@ -25,8 +25,8 @@ namespace iteration3wpf
         private Course _PrjCourse;
         public Course PrjCourse { get {return syncDown("PrjCourse", _PrjCourse); } set { _PrjCourse = syncUp("PrjCourse", value); } }
         [Synchronize]
-        private float _MaxMarks;
-        public float MaxMarks { get {return syncDown("MaxMarks", _MaxMarks); } set { _MaxMarks = syncUp("MaxMarks", value); } }
+        private int _MaxMarks;
+        public int MaxMarks { get { return syncDown("MaxMarks", _MaxMarks); } set { _MaxMarks = syncUp("MaxMarks", value); } }
         [Synchronize]
         private DateTime _DueDate;
         public DateTime DueDate { get { return syncDown("DueDate", _DueDate); } set { _DueDate = syncUp("DueDate", value); } }
