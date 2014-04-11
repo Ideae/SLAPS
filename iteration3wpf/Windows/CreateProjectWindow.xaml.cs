@@ -69,6 +69,7 @@ namespace iteration3wpf.Windows
             p.DueDate = dateDueDate.SelectedDate ?? DateTime.Now;
             c.Projects.Add(p);
             Close();
+            MainWindow.mainWindow.UpdateTreeView();
         }
     }
 }
