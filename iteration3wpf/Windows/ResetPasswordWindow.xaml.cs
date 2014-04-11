@@ -22,7 +22,7 @@ namespace iteration3wpf.Windows
         public ResetPasswordWindow()
         {
             InitializeComponent();
-            Utilities.CenterWindow(this);
+            this.CenterWindow();
         }
 
         private void Window_Closed(object sender, EventArgs e)

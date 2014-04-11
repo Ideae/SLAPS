@@ -15,14 +15,21 @@ using System.Windows.Shapes;
 namespace iteration3wpf.Windows
 {
     /// <summary>
-    /// Interaction logic for CreateProjectWindow.xaml
+    /// Interaction logic for EvaluateSubmissionWindow.xaml
     /// </summary>
-    public partial class CreateProjectWindow : Window
+    public partial class EvaluateSubmissionWindow : Window
     {
-        public CreateProjectWindow()
+        ViewSubmissionsWindow viewSubmissionsWindow;
+        Submission submission;
+        public EvaluateSubmissionWindow(ViewSubmissionsWindow viewSubmissionsWindow, string infostring, Submission submission)
         {
+            this.viewSubmissionsWindow = viewSubmissionsWindow;
             InitializeComponent();
             this.CenterWindow();
+            this.lblInfo.Content = infostring;
+            if (submission.Mark >= 0) txtGrade.Text = submission.Mark.ToString();
+            txtComments.Text = submission.InstructorComments;
+            lblOutof.Content = "/ " + submission.SmProject.MaxMarks.ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -32,7 +39,7 @@ namespace iteration3wpf.Windows
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            MainWindow.mainWindow.IsEnabled = true;
+            viewSubmissionsWindow.IsEnabled = true;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace iteration3wpf
         public LoginScreen()
         {
             InitializeComponent();
-            Utilities.CenterWindow(this);
+            this.CenterWindow();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)

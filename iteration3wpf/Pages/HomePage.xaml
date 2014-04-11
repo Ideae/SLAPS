@@ -9,19 +9,20 @@
 
     <Grid>
         <Rectangle x:Name="rectSLAPS" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="411" Stroke="Black" VerticalAlignment="Top" Width="435"/>
-        <Label Content="Announcements" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="SLAPS" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top"/>
-        <Border HorizontalAlignment="Left" Height="158" Margin="10,36,0,0" VerticalAlignment="Top" Width="415" BorderThickness="2" BorderBrush="#FF707070" >
+        <Label Content="Announcements" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="SLAPS" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Border HorizontalAlignment="Left" Height="130" Margin="10,64,0,0" VerticalAlignment="Top" Width="406" BorderThickness="2" BorderBrush="#FF707070" >
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="stkAnnouncements" Background="#FFAABBC1"/>
 
             </ScrollViewer>
 
         </Border>
-        <Border HorizontalAlignment="Left" Height="158" Margin="10,225,0,0" VerticalAlignment="Top" Width="415" BorderThickness="2" BorderBrush="#FF707070" >
+        <Border HorizontalAlignment="Left" Height="158" Margin="10,225,0,0" VerticalAlignment="Top" Width="406" BorderThickness="2" BorderBrush="#FF707070" >
             <StackPanel x:Name="stkAnnouncements1" Background="#FFAABBC1"/>
 
         </Border>
+        <Label Content="Home" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
 
     </Grid>
 </Page>

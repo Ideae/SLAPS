@@ -22,11 +22,12 @@ namespace iteration3wpf
         public ChangePassWindow()
         {
             InitializeComponent();
+            this.CenterWindow();
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if (!txtOldPass.Text.Equals(MainWindow.mainWindow.activeUser.Password))
+            if (!txtOldPass.Text.Equals(MainWindow.ActiveUser.Password))
             {
                 //PopupWindow popup = new PopupWindow();
                 MessageBox.Show(this, "Old password is incorrect.");
@@ -43,7 +44,7 @@ namespace iteration3wpf
             }
             else
             {
-                MainWindow.mainWindow.activeUser.Password = txtNewPass1.Text;
+                MainWindow.ActiveUser.Password = txtNewPass1.Text;
                 MessageBox.Show(this, "Your password is born again.");
                 Close();
             }

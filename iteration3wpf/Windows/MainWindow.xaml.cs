@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using iteration3wpf.Windows;
+using iteration3wpf.Pages;
 
 namespace iteration3wpf
 {
@@ -28,6 +29,7 @@ namespace iteration3wpf
     public partial class MainWindow : Window
     {
         public static MainWindow mainWindow;
+        public static User ActiveUser { get { return mainWindow.activeUser; } }
         public User activeUser;
 
         public Dictionary<AllPages, Page> pageDict;
@@ -40,7 +42,7 @@ namespace iteration3wpf
         public MainWindow(User usr)
         {
             InitializeComponent();
-            Utilities.CenterWindow(this);
+            this.CenterWindow();
             InitUser(usr);
 
             //this.Closed += (s, e) => Application.Current.Shutdown();
@@ -218,7 +220,6 @@ namespace iteration3wpf
             ChangePassWindow changePassWindow = new ChangePassWindow();
             this.IsEnabled = false;
             changePassWindow.Show();
-            Utilities.CenterWindow(changePassWindow);
             changePassWindow.Closed += (s, ee) =>
             {
                 this.IsEnabled = true;
@@ -265,7 +266,18 @@ namespace iteration3wpf
 
         private void btnPage2_Click(object sender, RoutedEventArgs e)
         {
-            frameMainframe.Navigate(pageDict[AllPages.ViewMessages]);
+            //frameMainframe.Navigate(pageDict[AllPages.ViewMessages]);
+            frameMainframe.Navigate(new ProjectPage());
+        }
+
+        private void btnFile_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            bool? result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+            }
         }
     }
 }
