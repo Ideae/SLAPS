@@ -4,13 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="440" d:DesignWidth="531"
+      d:DesignHeight="411" d:DesignWidth="435"
 	Title="ViewMessagesPage">
 
     <Grid>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="440" Stroke="Black" VerticalAlignment="Top" Width="531" Margin="0,0,-231,-140"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="411" Stroke="Black" VerticalAlignment="Top" Width="435"/>
         <Label Content="Page 2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Page 2" HorizontalAlignment="Left" Margin="475,404,0,0" VerticalAlignment="Top"/>
+        <Label Content="Page 2" HorizontalAlignment="Left" Margin="379,375,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

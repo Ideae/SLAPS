@@ -22,6 +22,11 @@ public class SQLiteDB
     
     public static SQLiteDB main;
 
+    static SQLiteDB()
+    {
+        main = new SQLiteDB("iteration3.sql");
+    }
+
     /// <summary>
     ///     Single Param Constructor for specifying the DB file.
     /// </summary>
@@ -54,23 +59,19 @@ public class SQLiteDB
     /// <returns>A DataTable containing the result set.</returns>
     public DataTable GetDataTable(string sql, params string[] Params)
     {
-
         DataTable dt = new DataTable();
-
-            SQLiteConnection cnn = new SQLiteConnection(dbConnection);
-            cnn.Open();
-            SQLiteCommand mycommand = new SQLiteCommand(cnn);
-            mycommand.CommandText = sql;
-
-            for (int i = 0; i < Params.Length; i++)
-            {
-                mycommand.Parameters.Add(new SQLiteParameter("@param" + (i + 1), Params[i]));
-            }
-            SQLiteDataReader reader = mycommand.ExecuteReader();
-            dt.Load(reader);
-            reader.Close();
-            cnn.Close();
-
+        SQLiteConnection cnn = new SQLiteConnection(dbConnection);
+        cnn.Open();
+        SQLiteCommand mycommand = new SQLiteCommand(cnn);
+        mycommand.CommandText = sql;
+        for (int i = 0; i < Params.Length; i++)
+        {
+            mycommand.Parameters.Add(new SQLiteParameter("@param" + (i + 1), Params[i]));
+        }
+        SQLiteDataReader reader = mycommand.ExecuteReader();
+        dt.Load(reader);
+        reader.Close();
+        cnn.Close();
         return dt;
     }
 

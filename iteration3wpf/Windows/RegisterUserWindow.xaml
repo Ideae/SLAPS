@@ -1,0 +1,21 @@
+﻿<Window x:Class="iteration3wpf.Windows.RegisterUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RegisterUserWindow" Height="366" Width="239" Closed="Window_Closed">
+    <Grid>
+        <Label Content="Register User" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="85"/>
+        <Label Content="User Type" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbUsertype" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="144"/>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtFirstname" HorizontalAlignment="Left" Height="23" Margin="10,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtLastname" HorizontalAlignment="Left" Height="23" Margin="10,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Label Content="User Name" HorizontalAlignment="Left" Margin="10,187,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="23" Margin="10,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="10,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="137,296,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click"/>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="57,296,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

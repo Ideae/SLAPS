@@ -23,6 +23,17 @@ namespace iteration3wpf
         public HomePage()
         {
             InitializeComponent();
+            PopulateHomePage();
+        }
+
+        public void PopulateHomePage()
+        {
+            Utilities.AddTextBlock(stkAnnouncements, "Announcement 1", "This announcement would normally be important.");
+            Utilities.AddTextBlock(stkAnnouncements, "Announcement 2", "Yeah, right.");
+            Utilities.AddTextBlock(stkAnnouncements, "3", "3");
+            Utilities.AddTextBlock(stkAnnouncements, "4", "4");
+            Utilities.AddTextBlock(stkAnnouncements, "5", "5");
+            Utilities.AddTextBlock(stkAnnouncements, "6", "6");
         }
     }
 }

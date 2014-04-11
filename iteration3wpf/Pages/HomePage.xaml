@@ -4,13 +4,24 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="440" d:DesignWidth="531"
+      d:DesignHeight="411" d:DesignWidth="435"
 	Title="HomePage">
 
     <Grid>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="440" Stroke="Black" VerticalAlignment="Top" Width="531"/>
-        <Label Content="page1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="page1" HorizontalAlignment="Left" Margin="478,404,0,0" VerticalAlignment="Top"/>
+        <Rectangle x:Name="rectSLAPS" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="411" Stroke="Black" VerticalAlignment="Top" Width="435"/>
+        <Label Content="Announcements" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="SLAPS" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top"/>
+        <Border HorizontalAlignment="Left" Height="158" Margin="10,36,0,0" VerticalAlignment="Top" Width="415" BorderThickness="2" BorderBrush="#FF707070" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="stkAnnouncements" Background="#FFAABBC1"/>
+
+            </ScrollViewer>
+
+        </Border>
+        <Border HorizontalAlignment="Left" Height="158" Margin="10,225,0,0" VerticalAlignment="Top" Width="415" BorderThickness="2" BorderBrush="#FF707070" >
+            <StackPanel x:Name="stkAnnouncements1" Background="#FFAABBC1"/>
+
+        </Border>
 
     </Grid>
 </Page>

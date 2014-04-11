@@ -40,6 +40,7 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -71,6 +72,9 @@
     </ApplicationDefinition>
     <Compile Include="Administrator.cs" />
     <Compile Include="Loadable.cs" />
+    <Compile Include="Pages\CoursePage.xaml.cs">
+      <DependentUpon>CoursePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SQLiteDB.cs" />
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -81,6 +85,9 @@
     <Compile Include="Course.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Instructor.cs" />
+    <Compile Include="Windows\CreateCourseWindow.xaml.cs">
+      <DependentUpon>CreateCourseWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
@@ -96,11 +103,28 @@
     <Compile Include="Pages\ViewMessagesPage.xaml.cs">
       <DependentUpon>ViewMessagesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\RegisterUserWindow.xaml.cs">
+      <DependentUpon>RegisterUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ResetPasswordWindow.xaml.cs">
+      <DependentUpon>ResetPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SendSLAPWindow.xaml.cs">
+      <DependentUpon>SendSLAPWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\CoursePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ChangePassWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CreateCourseWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,6 +152,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\RegisterUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ResetPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SendSLAPWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -146,6 +182,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

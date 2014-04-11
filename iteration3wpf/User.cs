@@ -23,7 +23,6 @@ namespace iteration3wpf
         public int ID;
         protected override void SetData(DataRow UserRow)
         {
-            
             ID = (int)UserRow.Field<long>("Id");
             username = UserRow.Field<string>("Username");
             password = UserRow.Field<string>("Password");
@@ -36,6 +35,10 @@ namespace iteration3wpf
             int[] courseList = SQLiteDB.decodeList( UserRow.Field<string>("Courses"));
             int[] submissionList = SQLiteDB.decodeList( UserRow.Field<string>("IndSubmissions"));
 
+            if (groups == null || groups.Count > 0) groups = new List<Group>();
+            if (courses == null || courses.Count > 0) courses = new List<Course>();
+            if (submissions == null || submissions.Count > 0) submissions = new List<Submission>();
+
             foreach (int i in groupList) groups.Add(Group.getById(i));
             foreach (int i in courseList) courses.Add(Course.getById(i));
             foreach (int i in submissionList) submissions.Add(Submission.getById(i));
@@ -43,7 +46,7 @@ namespace iteration3wpf
 
         public User() { }
         // methods //
-        // checks the databse for a user with the specified credentials
+        // checks the database for a user with the specified credentials
         public static User login(string username, string password)
         {
             DataTable t = SQLiteDB.main.GetDataTable("SELECT * FROM 'Users' WHERE Username=@param1;", username);
