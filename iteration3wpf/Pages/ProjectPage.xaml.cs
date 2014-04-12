@@ -165,5 +165,55 @@ namespace iteration3wpf.Pages
             }
             MainWindow.mainWindow.frameMainframe.Navigate(new ProjectPage(project));
         }
+
+        private void btnSubmitProject_Click(object sender, RoutedEventArgs e)
+        {
+            Group currentGroup = project.Groups.FirstOrDefault(g => g.Members.Contains(MainWindow.activeUser));
+            if (currentGroup == null)
+            {
+                MessageBox.Show("You have not been assigned to a group for this project.");
+                return;
+            }
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            bool? result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string fileName = dlg.FileName;
+                string fileDirectory = MainWindow.ServerDirectory + "\\" + project.PrjCourse.CourseCode.Replace(' ', '_').Trim() +"\\"+ project.Title.Replace(' ', '_').Trim()+"\\Submissions\\"+ MainWindow.activeUser.Username.Replace(' ', '_').Trim();
+                if (!Directory.Exists(fileDirectory)) Directory.CreateDirectory(fileDirectory);
+                string fullpath = Path.Combine(fileDirectory, Path.GetFileName(fileName));
+                if (File.Exists(fullpath)){
+                    MessageBox.Show("File already exists!");
+                    return;
+                }
+                File.Copy(fileName, fullpath);
+                string partialName = Path.GetFileName(fileName).Replace(' ', '_').Trim();
+                
+
+                if (currentGroup.GrpSubmission != null){
+                    MessageBoxResult res = MessageBox.Show("Your Group already submitted, Overwrite?", "Resubmit?", MessageBoxButton.YesNo);
+
+                    // Process message box results 
+                    switch (res)
+                    {
+                        case MessageBoxResult.Yes:
+                            break;
+                        case MessageBoxResult.No:
+                            return;
+                    }
+                }
+                LFile f = LFile.getNew();
+                f.FileName = partialName;
+                f.Path = fileDirectory;
+                Submission s = Submission.getNew();
+                s.SmGroup = currentGroup;
+                s.SmProject = project;
+                s.Submitter = MainWindow.activeUser;
+                s.SubmitTime = DateTime.Now;
+                s.Files.Add(f);
+                currentGroup.GrpSubmission = s;
+                MessageBox.Show("Submission Added!");
+            }
+        }
     }
 }
