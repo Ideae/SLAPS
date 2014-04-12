@@ -12,7 +12,10 @@
         <Label Content="Project Name:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
         <Label Content="Instruction Documents" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
         <Border HorizontalAlignment="Left" Height="89" Margin="10,294,0,0" VerticalAlignment="Top" Width="397" BorderThickness="2" BorderBrush="#FF707070" >
-            <StackPanel x:Name="stkFiles" Background="#FFAABBC1"/>
+            <ScrollViewer>
+                <StackPanel x:Name="stkFiles" Background="#FFAABBC1"/>
+
+            </ScrollViewer>
 
         </Border>
         <Label x:Name="lblProjectName" Content="Project Name" HorizontalAlignment="Left" Margin="104,42,0,0" VerticalAlignment="Top"/>
