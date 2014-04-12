@@ -168,6 +168,12 @@ namespace iteration3wpf.Pages
 
         private void btnSubmitProject_Click(object sender, RoutedEventArgs e)
         {
+            Group currentGroup = project.Groups.FirstOrDefault(g => g.Members.Contains(MainWindow.activeUser));
+            if (currentGroup == null)
+            {
+                MessageBox.Show("You have not been assigned to a group for this project.");
+                return;
+            }
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             bool? result = dlg.ShowDialog();
             if (result == true)
@@ -183,12 +189,7 @@ namespace iteration3wpf.Pages
                 File.Copy(fileName, fullpath);
                 string partialName = Path.GetFileName(fileName).Replace(' ', '_').Trim();
                 
-                Group currentGroup = project.Groups.FirstOrDefault(g=>g.Members.Contains(MainWindow.activeUser));
-                if (currentGroup == null)
-                {
-                    MessageBox.Show("You have not been assigned to a group for this project.");
-                    return;
-                }
+
                 if (currentGroup.GrpSubmission != null){
                     MessageBoxResult res = MessageBox.Show("Your Group already submitted, Overwrite?", "Resubmit?", MessageBoxButton.YesNo);
 
