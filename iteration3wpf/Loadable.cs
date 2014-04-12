@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows;
+using System.Diagnostics;
 
 namespace iteration3wpf
 {
@@ -67,7 +68,10 @@ namespace iteration3wpf
                 else if (type == typeof(float) || type == typeof(double)) t = "NUMERIC";
                 else t = "TEXT";
                 SQLiteDB.main.ExecuteNonQuery("ALTER TABLE " + TableName + " ADD COLUMN " + columnName + " " + t + ";");
-                throw new SystemException("Database Was upgraded. The previous database was inconsistent with new code. This excpe[tion will probably not Happen the next time you run the program.");
+                //throw new SystemException("Database Was upgraded. The previous database was inconsistent with new code. This excpe[tion will probably not Happen the next time you run the program.");
+                MessageBox.Show("The SLAPS system must now perform scheduled maitence. It will take from 1 to 2 seconds. Please log in afterwards. (Database was upgraded.)");
+                //Application.Current.Shutdown();
+                Process.GetCurrentProcess().Kill();
             }
         }
 

@@ -28,11 +28,11 @@ namespace iteration3wpf
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             //temporary, remove later
-            if (txtUsername.Text.Equals(""))
-            {
-                TryLogin(User.login("system", "NeverLogInAsThisGuy"));
-                return;
-            }
+            //if (txtUsername.Text.Equals(""))
+            //{
+            //    TryLogin(User.login("system", "NeverLogInAsThisGuy"));
+            //    return;
+            //}
             TryLogin(User.login(txtUsername.Text.ToLowerInvariant(), txtPassword.Password));
         }
 
@@ -62,20 +62,20 @@ namespace iteration3wpf
 
         private void grid1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.F9)
-            {
-                //TryLogin(User.GetById<User>(0));
-                TryLogin(User.login("system", "NeverLogInAsThisGuy"));
-            }
+            //if (e.Key == Key.F9)
+            //{
+            //    //TryLogin(User.GetById<User>(0));
+            //    TryLogin(User.login("system", "NeverLogInAsThisGuy"));
+            //}
         }
 
         private void btnForgotPassword_Click(object sender, RoutedEventArgs e)
         {
-            if (txtUsername.Text.Equals(""))
-            {
-                TryLogin(User.login("vmisic", "406Prof"));
-                return;
-            }
+            //if (txtUsername.Text.Equals(""))
+            //{
+            //    TryLogin(User.login("vmisic", "406Prof"));
+            //    return;
+            //}
 
             User u = User.login(txtUsername.Text, txtPassword.Password, false);
             if (u == null)
@@ -94,11 +94,11 @@ namespace iteration3wpf
 
         private void txtUsername_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (txtUsername.Text.Equals(""))
-            {
-                TryLogin(User.login("dcamaren", "Saharris1"));
-                return;
-            }
+            //if (txtUsername.Text.Equals(""))
+            //{
+            //    TryLogin(User.login("dcamaren", "Saharris1"));
+            //    return;
+            //}
         }
 
     }
