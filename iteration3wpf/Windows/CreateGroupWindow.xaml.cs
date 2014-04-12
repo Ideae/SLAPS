@@ -71,13 +71,14 @@ namespace iteration3wpf.Windows
         {
             if (String.IsNullOrEmpty(txtGroupName.Text))
             {
-                MessageBox.Show("Plsease name gourp");
+                MessageBox.Show("Please name group");
                 return;
             }
 
             Group g = Group.getNew();
             g.GrpProject = p;
             g.Name = txtGroupName.Text;
+            p.Groups.Add(g);
             foreach( User u in listAdded.Items)
             {
                 g.Members.Add(u);

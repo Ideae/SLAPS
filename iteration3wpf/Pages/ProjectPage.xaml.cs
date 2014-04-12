@@ -30,7 +30,8 @@ namespace iteration3wpf.Pages
             lblProjectName.Content = project.Title;
             lblMaxMarks.Content = project.MaxMarks;
             lblDueDate.Content = project.DueDate.ToLongDateString();
-            lblSummary.Content = project.Summary;
+            txtSummary.Text = project.Summary;
+            txtSummary.IsReadOnly = true;
 
             if (MainWindow.activeUser.UserType == usertype.Student)
             {

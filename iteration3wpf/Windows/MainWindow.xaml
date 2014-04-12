@@ -6,7 +6,6 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="40" Stroke="Black" VerticalAlignment="Top" Width="632"/>
         <Menu FlowDirection="RightToLeft" x:Name="menuTopRight" HorizontalAlignment="Right" Height="22" Margin="0,10,10,0" VerticalAlignment="Top" Width="65" BorderBrush="#FFB4B4B4" BorderThickness="1" Background="#FFD4D4D4"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="411" Margin="0,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="197"/>
-        <TreeView x:Name="treeViewMain" HorizontalAlignment="Left" Height="125" Margin="10,103,0,0" VerticalAlignment="Top" Width="174" />
         <ComboBox x:Name="cmbCourse" Text="Select Course" Margin="10,67,496,0" VerticalAlignment="Top" SelectionChanged="cmbCourse_SelectionChanged"/>
         <Label x:Name="lblName" Content="name" HorizontalAlignment="Left" Margin="437,0,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="lblUsertype" Content="title" HorizontalAlignment="Left" Margin="437,17,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
@@ -16,6 +15,7 @@
         <Label Content="Actions" HorizontalAlignment="Left" Margin="10,228,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
         <Label Content="SLAPS" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
         <Label Content="Select Course" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
+        <ListBox x:Name="listProjects" HorizontalAlignment="Left" Height="134" Margin="10,94,0,0" VerticalAlignment="Top" Width="174"/>
 
     </Grid>
 </Window>

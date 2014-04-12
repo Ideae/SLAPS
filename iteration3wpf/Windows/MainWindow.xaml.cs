@@ -61,7 +61,15 @@ namespace iteration3wpf
 
             PopulateSidebar();
 
-            //treeViewMain.click
+            listProjects.SelectionChanged += listProjects_SelectionChanged;
+        }
+
+        void listProjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listProjects.SelectedValue == null) return;
+
+            Project proj = (Project)listProjects.SelectedItem;
+            frameMainframe.Navigate(new ProjectPage(proj));
         }
 
         void menuItemLogout_Click(object sender, RoutedEventArgs e)
@@ -171,18 +179,6 @@ namespace iteration3wpf
             this.IsEnabled = false;
             slapWindow.ShowDialog();
         }
-        private TreeViewItem CreateTreeViewItem(object obj)
-        {
-            TreeViewItem item = new TreeViewItem();
-            item.Header = obj;
-            return item;
-        }
-        //public T GetPage<T>() where T : Page
-        //{
-        //    Page p = pageDict.Values.First(pp => pp.GetType() == typeof(T));
-        //    return p != null ? (T)p : null;
-        //}
-
         public void InitUser()
         {
             //activeUser = u;
@@ -207,34 +203,6 @@ namespace iteration3wpf
             };
         }
 
-        private void btnTest_Click(object sender, RoutedEventArgs e)
-        {
-            char letter = 'a';
-            TreeViewItem tempItem = null;
-            for (int i = 0; i < 1; i++)
-            {
-                char let = (char)(letter + i);
-                object letobj = let;
-                if (tempItem != null)
-                {
-                    TreeViewItem item = CreateTreeViewItem(letobj);
-                    tempItem.Items.Add(item);
-                    tempItem = item;
-                }
-                else
-                {
-                    TreeViewItem root = CreateTreeViewItem(letobj);
-                    root.MouseDoubleClick += (s, ee) => MessageBox.Show("Click");
-                    treeViewMain.Items.Add(root);
-                    tempItem = root;
-                }
-
-                //TreeViewItem t = new TreeViewItem();
-                //t.tag
-            }
-            //trvTest.Items.Add()
-        }
-
         private void cmbCourse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Course c = (Course)cmbCourse.SelectedItem;
@@ -245,20 +213,18 @@ namespace iteration3wpf
 
         public void UpdateTreeView()
         {
-            int c = treeViewMain.Items.Count;
+            int c = listProjects.Items.Count;
             for(int i = 0; i < c; i++)
             {
-                treeViewMain.Items.RemoveAt(0);
+                listProjects.Items.RemoveAt(0);
             }
             if (cmbCourse.SelectedIndex != -1)
             {
                 var projs = (cmbCourse.SelectedItem as Course).Projects;
                 foreach (var p in projs)
                 {
-                    TreeViewItem projnode = CreateTreeViewItem(p);
-                    projnode.MouseDoubleClick += (s, ee) => frameMainframe.Navigate(new ProjectPage((Project)projnode.Header));
-                    treeViewMain.Items.Add(projnode);
-
+                    //projnode.MouseDoubleClick += (s, ee) => frameMainframe.Navigate(new ProjectPage((Project)projnode.Header));
+                    listProjects.Items.Add(p);
                 }
             }
         }

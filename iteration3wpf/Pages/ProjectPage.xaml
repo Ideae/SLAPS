@@ -9,19 +9,19 @@
 
     <Grid>
         <Rectangle x:Name="rectProject" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="411" Stroke="Black" VerticalAlignment="Top" Width="435"/>
-        <Label Content="Project Name:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
-        <Label Content="Instruction Documents" HorizontalAlignment="Left" Margin="10,246,0,0" VerticalAlignment="Top"/>
-        <Border HorizontalAlignment="Left" Height="110" Margin="10,273,0,0" VerticalAlignment="Top" Width="235" BorderThickness="2" BorderBrush="#FF707070" >
+        <Label Content="Project Name:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
+        <Label Content="Instruction Documents" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
+        <Border HorizontalAlignment="Left" Height="89" Margin="10,294,0,0" VerticalAlignment="Top" Width="397" BorderThickness="2" BorderBrush="#FF707070" >
             <StackPanel x:Name="stkFiles" Background="#FFAABBC1"/>
 
         </Border>
         <Label x:Name="lblProjectName" Content="Project Name" HorizontalAlignment="Left" Margin="104,42,0,0" VerticalAlignment="Top"/>
-        <Label Content="Marks available:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+        <Label Content="Marks available:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
         <Label x:Name="lblMaxMarks" Content="Max Marks" HorizontalAlignment="Left" Margin="104,68,0,0" VerticalAlignment="Top"/>
-        <Label Content="Due Date:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top"/>
+        <Label Content="Due Date:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" FontStyle="Italic"/>
         <Label x:Name="lblDueDate" Content="Duedate" HorizontalAlignment="Left" Margin="104,94,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="___No_Name_" Content="Summary" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Height="25" Width="62"/>
-        <Border HorizontalAlignment="Left" Margin="260,19,0,28" Padding="7" BorderThickness="2" Background="#FFAABBC1" BorderBrush="#FF707070" Width="147">
+        <Label x:Name="___No_Name_" Content="Summary" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" Height="25" Width="62" FontStyle="Italic"/>
+        <Border HorizontalAlignment="Left" Margin="260,7,0,257" Padding="7" BorderThickness="2" Background="#FFAABBC1" BorderBrush="#FF707070" Width="147">
             <Grid>
                 <Button x:Name="btnEditProject" Content="Edit Project" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Click="btnEditProject_Click"/>
                 <Button x:Name="btnUploadInstructions" Content="Upload Instructions" HorizontalAlignment="Left" Margin="0,53,0,0" VerticalAlignment="Top" Width="129"/>
@@ -32,10 +32,18 @@
                 <Button x:Name="btnSLAPGroup" Content="Send SLAP to Group" HorizontalAlignment="Left" Margin="0,134,0,0" VerticalAlignment="Top" Width="129" Click="btnSLAPGroup_Click"/>
             </Grid>
         </Border>
-        <Border HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Height="92" Width="235" Background="#FFAABBC1" BorderBrush="#FF707070" BorderThickness="2">
-            <Label x:Name="lblSummary" Content="Summary Text"/>
+        <Border HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top" Height="97" Width="397" Background="#FFAABBC1" BorderBrush="#FF707070" BorderThickness="2">
+            <TextBox x:Name="txtSummary" TextWrapping="Wrap" Background="Transparent">
+                <TextBox.BorderBrush>
+                    <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                        <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                        <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                        <GradientStop Color="#00E3E9EF" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBox.BorderBrush>
+            </TextBox>
         </Border>
-        <Label Content="Project" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Project" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
 
     </Grid>
 </Page>
