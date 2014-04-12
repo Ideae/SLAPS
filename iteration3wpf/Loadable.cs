@@ -117,6 +117,7 @@ namespace iteration3wpf
         private static string composeDB(Object o)
         {
             string s = "";
+            if (o == null) s = DBNull.Value.ToString();
             if (o is string) s = (string)o;
             else if (o is int) s = ((long)((int)o)).ToString();
             else if (o is float) s = o.ToString();

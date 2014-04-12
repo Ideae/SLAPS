@@ -95,14 +95,25 @@ namespace iteration3wpf
             course.CourseCode = txtCourseCode.Text;
             course.Title = txtCourseName.Text;
             course.Instructor = (User)cmbProfessor.SelectedItem;
+            if(!((User)cmbProfessor.SelectedItem).Courses.Contains(course))((User)cmbProfessor.SelectedItem).Courses.Add(course);
 
             foreach(User s in course.Students.ToList())
             {
-                if (!listAdded.Items.Contains(s)) course.Students.Remove(s);
+                if (!listAdded.Items.Contains(s)) 
+                {
+                    course.Students.Remove(s);
+                    
+                }
+                s.Courses.Remove(course);
             }
             foreach(User s in listAdded.Items)
             {
-                if (!course.Students.Contains(s)) course.Students.Add(s);
+                if (!course.Students.Contains(s))
+                {
+                    course.Students.Add(s);
+                    
+                }
+                if (!s.Courses.Contains(course)) s.Courses.Add(course);
             }
             MessageBox.Show("The course has been updated sucessfully.");
         }

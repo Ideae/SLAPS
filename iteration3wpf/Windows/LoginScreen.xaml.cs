@@ -30,7 +30,7 @@ namespace iteration3wpf
             //temporary, remove later
             if (txtUsername.Text.Equals(""))
             {
-                TryLogin(User.login("system", "password"));
+                TryLogin(User.login("system", "NeverLogInAsThisGuy"));
                 return;
             }
             TryLogin(User.login(txtUsername.Text, txtPassword.Password));
@@ -65,7 +65,7 @@ namespace iteration3wpf
             if (e.Key == Key.F9)
             {
                 //TryLogin(User.GetById<User>(0));
-                TryLogin(User.login("system", "password"));
+                TryLogin(User.login("system", "NeverLogInAsThisGuy"));
             }
         }
 
