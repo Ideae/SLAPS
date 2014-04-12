@@ -50,8 +50,15 @@ namespace iteration3wpf
                         MessageBox.Show("File already exists!");
                         return;
                     }
-                    File.Copy(fullpath, fileName);
-                    MessageBox.Show("File Saved!");
+                    try
+                    {
+                        File.Copy(fullpath, fileName);
+                        MessageBox.Show("File Saved!");
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show("Could not save file.");
+                    }
                     return;
                 }
                 MessageBox.Show("No filename Entered!");
