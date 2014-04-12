@@ -142,7 +142,7 @@ namespace iteration3wpf
         }
 
 
-        public abstract int Id { get; set; }
+        public override int Id { get; set; }
 
         public static T GetById(int id)
         {
@@ -206,6 +206,8 @@ namespace iteration3wpf
         public Synchronize(bool lite = false) { this.lite = lite; }
     }
 
-    public class Loadable { }
+    public class Loadable {
+        public virtual int Id { get; set; }
+    }
 
 }

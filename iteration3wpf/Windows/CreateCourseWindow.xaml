@@ -5,9 +5,9 @@
     <Grid>
         <Label Content="Create Course" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Course Title" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCourseTitle" HorizontalAlignment="Left" Height="23" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
+        <TextBox x:Name="txtCourseTitle" HorizontalAlignment="Left" Height="23" Margin="10,86,0,0" VerticalAlignment="Top" Width="141" MaxLines="1"/>
         <Label Content="Course Code" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCourseCode" HorizontalAlignment="Left" Height="23" Margin="10,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
+        <TextBox x:Name="txtCourseCode" HorizontalAlignment="Left" Height="23" Margin="10,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" MaxLines="1"/>
         <Label Content="Course Description" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCourseDescription" HorizontalAlignment="Left" Height="75" Margin="10,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287"/>
         <Label Content="Enrollment Deadline" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top"/>

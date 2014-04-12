@@ -22,7 +22,7 @@ namespace iteration3wpf.Windows
     public partial class AddRecipientsWindow : Window
     {
         SendSLAPWindow sendSlapWindow;
-        DataRowCollection list = null;
+        List<object> list;
         public AddRecipientsWindow(SendSLAPWindow sendSlapWindow)
         {
             this.sendSlapWindow = sendSlapWindow;
@@ -30,16 +30,19 @@ namespace iteration3wpf.Windows
             this.CenterWindow();
 
             cmbType.Items.Add("Students");
+            cmbType.SelectedIndex = 0;
             cmbType.Items.Add("Groups");
             cmbType.Items.Add("Instructors");
-            cmbType.Items.Add("Courses");
             cmbType.Items.Add("Administrators");
-            cmbType.SelectedIndex = 0;
+            if(MainWindow.activeUser.UserType == usertype.Instructor) cmbType.Items.Add("Courses");
+
         }
 
 
         private void cmbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            list = new List<object>();
+
             int c = listUnadded.Items.Count;
             for (int i = 0; i < c; i++)
             {
@@ -49,33 +52,38 @@ namespace iteration3wpf.Windows
             switch (t)
             {
                 case "Students":
-                    list = SQLiteDB.main.GetDataTable("SELECT * FROM Users WHERE UserType='Student'").Rows;
+                    foreach(Course course in MainWindow.activeUser.Courses)
+                        foreach(User user in course.Students)
+                            if (!list.Contains(user))
+                                list.Add(user);
                     break;
                 case "Groups":
-                    list = SQLiteDB.main.GetDataTable("SELECT * FROM Groups").Rows;
+                    foreach (Group g in MainWindow.activeUser.Groups) list.Add(g);
                     break;
                 case "Instructors":
-                    list = SQLiteDB.main.GetDataTable("SELECT * FROM Users WHERE UserType='Instructor'").Rows;
+                    foreach(Course course in MainWindow.activeUser.Courses) list.Add(course.Instructor);
                     break;
                 case "Courses":
-                    list = SQLiteDB.main.GetDataTable("SELECT * FROM Courses").Rows;
+                    foreach (Course course in MainWindow.activeUser.Courses) list.Add(course);
                     break;
                 case "Administrators":
-                    list = SQLiteDB.main.GetDataTable("SELECT * FROM Users WHERE UserType='Admin'").Rows;
+                    foreach (DataRow d in SQLiteDB.main.GetDataTable("SELECT * FROM Users WHERE UserType='Admin'").Rows) 
+                        list.Add(User.GetById((int)d.Field<long>("Id")));
+                    list.Remove(User.GetById(0));
                     break;
             }
-            foreach (DataRow d in list)
+            foreach (object d in list)
             {
-                bool bad = false;
-                foreach(DataRowWrapper dd in listAdded.Items)
-                {
-                    bool b1 = dd.dataRow[1].Equals(d[1]);
-                    bool b2 = dd.dataRow[0].Equals(d[0]);
-                    if (b1 && b2)
-                        bad = true;
-                }
-                if (bad) continue;
-                listUnadded.Items.Add(new DataRowWrapper(d, t));
+                //bool bad = false;
+                //foreach(DataRowWrapper dd in listAdded.Items)
+                //{
+                //    bool b1 = dd.dataRow[1].Equals(d[1]);
+                //    bool b2 = dd.dataRow[0].Equals(d[0]);
+                //    if (b1 && b2)
+                //        bad = true;
+                //}
+                if (listAdded.Items.Contains(d)) continue;
+                listUnadded.Items.Add(d);//new DataRowWrapper(d, t));
             }
         }
 
@@ -83,7 +91,8 @@ namespace iteration3wpf.Windows
         {
             if (listUnadded.SelectedIndex >= 0)
             {
-                DataRowWrapper d = (DataRowWrapper)listUnadded.Items[listUnadded.SelectedIndex];
+                //DataRowWrapper d = (DataRowWrapper)listUnadded.Items[listUnadded.SelectedIndex];
+                Object d = listUnadded.SelectedItems[0];
                 listAdded.Items.Add(d);
                 listUnadded.Items.Remove(d);
             }
@@ -93,13 +102,20 @@ namespace iteration3wpf.Windows
         {
             if (listAdded.SelectedIndex >= 0)
             {
-                DataRowWrapper d = (DataRowWrapper)listAdded.Items[listAdded.SelectedIndex];
+                //DataRowWrapper d = (DataRowWrapper)listAdded.Items[listAdded.SelectedIndex];
+                Object d = listAdded.SelectedItems[0];
                 listUnadded.Items.Add(d);
                 listAdded.Items.Remove(d);
             }
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            sendSlapWindow.IsEnabled = true;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
         {
             this.Hide();
             sendSlapWindow.IsEnabled = true;

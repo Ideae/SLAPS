@@ -33,7 +33,7 @@ namespace iteration3wpf
                 TryLogin(User.login("system", "NeverLogInAsThisGuy"));
                 return;
             }
-            TryLogin(User.login(txtUsername.Text, txtPassword.Password));
+            TryLogin(User.login(txtUsername.Text.ToLowerInvariant(), txtPassword.Password));
         }
 
         private void TryLogin(User usr)
@@ -85,6 +85,7 @@ namespace iteration3wpf
             }
             PasswordRequest prequest = PasswordRequest.getNew();
             prequest.UserRequesting = u;
+            prequest.AlreadyHandled = false;
             MessageBox.Show("Password request has been sent to admin.");
             txtUsername.Text = "";
             txtPassword.Clear();

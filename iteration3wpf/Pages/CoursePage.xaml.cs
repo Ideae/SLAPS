@@ -28,6 +28,7 @@ namespace iteration3wpf
             lblCourseName.Content = c.Title;
             lblCourseCode.Content = c.CourseCode;
             lblInstructor.Content = c.Instructor;
+            txtSummary.Text = c.Description;
             foreach (var a in c.Announcements)
             {
                 Utilities.AddTextBlock(stkAnnouncements, a.Title, a.Content);

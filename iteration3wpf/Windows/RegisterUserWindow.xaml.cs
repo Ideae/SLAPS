@@ -52,10 +52,16 @@ namespace iteration3wpf.Windows
                 MessageBox.Show("Please enter valid input.");
                 return;
             }
+            if (User.login("txtUsername.Text", "", false)!= null)
+            {
+                MessageBox.Show("UserName Taken.");
+                return;
+            }
             User user = User.getNew();
             user.FirstName = txtFirstname.Text;
             user.LastName = txtLastname.Text;
-            user.Username = txtUsername.Text;
+            
+            user.Username = txtUsername.Text.ToLowerInvariant();
             user.Password = txtPassword.Text;
             user.UserType = (usertype)cmbUsertype.SelectedItem;
             MessageBox.Show("User succesfully created.");

@@ -4,7 +4,7 @@
         Title="Edit Project" Height="344" Width="256" Closed="Window_Closed">
     <Grid>
         <Label Content="Project Name" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtProjectName" HorizontalAlignment="Left" Height="23" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212"/>
+        <TextBox x:Name="txtProjectName" HorizontalAlignment="Left" Height="23" Margin="10,40,0,0" VerticalAlignment="Top" Width="212" MaxLines="1"/>
         <Label Content="Max Marks" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtMaxMarks" HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212"/>
         <Label Content="Summary" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top"/>

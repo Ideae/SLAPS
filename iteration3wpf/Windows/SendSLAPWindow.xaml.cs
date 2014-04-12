@@ -99,23 +99,23 @@ namespace iteration3wpf.Windows
             }
             else
             {
-                foreach(DataRowWrapper q in arw.listAdded.Items)
+                foreach(Loadable q in arw.listAdded.Items)
                 {
-                    if (q.type.Equals("Students") || q.type.Equals("Instructors") || q.type.Equals("Administrators"))
+                    if (q.GetType() == typeof(User))
                     {
-                        User u = User.GetById(q.ID);
+                        User u = (User)q;
                         m.Recievers.Add(u);
                         u.Messages.Add(m);
                     }
-                    else if (q.type.Equals("Courses"))
+                    else if (q.GetType() == typeof(Course))
                     {
-                        Course c = Course.GetById(q.ID);
+                        Course c = (Course)q;
                         m.Recievers.Add(c);
                         c.Announcements.Add(m);
                     }
-                    else if (q.type.Equals("Groups"))
+                    else if (q.GetType() == typeof(Group))
                     {
-                        Group g = Group.GetById(q.ID);
+                        Group g = (Group)q;
                         foreach(User u in g.Members)
                         {
                             if (u != MainWindow.activeUser)

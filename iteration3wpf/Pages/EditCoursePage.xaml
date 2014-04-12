@@ -25,8 +25,8 @@
         <Button x:Name="btnRemove" Content="&lt;" HorizontalAlignment="Left" Margin="161,340,0,0" VerticalAlignment="Top" Width="147" Click="btnRemove_Click"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="341,370,0,0" VerticalAlignment="Top" Width="70" Click="btnCancel_Click"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="266,370,0,0" VerticalAlignment="Top" Width="70" Click="btnSave_Click"/>
-        <TextBox x:Name="txtCourseName" HorizontalAlignment="Left" Height="23" Margin="104,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
-        <TextBox x:Name="txtCourseCode" HorizontalAlignment="Left" Height="23" Margin="104,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
+        <TextBox x:Name="txtCourseName" HorizontalAlignment="Left" Height="23" Margin="104,42,0,0" VerticalAlignment="Top" Width="204" MaxLines="1"/>
+        <TextBox x:Name="txtCourseCode" HorizontalAlignment="Left" Height="23" Margin="104,70,0,0" VerticalAlignment="Top" Width="204" MaxLines="1"/>
 
     </Grid>
 </Page>

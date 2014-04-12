@@ -47,7 +47,7 @@ namespace iteration3wpf
             if (activeUser.UserType == usertype.Admin)
             {
                 cmbCourse.Visibility = System.Windows.Visibility.Hidden;
-
+                lblAsgmnt.Visibility = System.Windows.Visibility.Hidden;
                 PopulateCoursesInList();
                 listProjects.SelectionChanged += listProjects_SelectionChangedAdmin;
             }
@@ -226,7 +226,8 @@ namespace iteration3wpf
 
             lblName.Content = activeUser.FirstName + " " + activeUser.LastName;
             lblUsertype.Content = activeUser.UserType;
-
+            cmbCourse.Items.Add("-----------");
+            cmbCourse.SelectedIndex = 0;
             foreach (var g in activeUser.Courses) cmbCourse.Items.Add(g);
 
             
@@ -246,6 +247,7 @@ namespace iteration3wpf
 
         private void cmbCourse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (cmbCourse.SelectedIndex == 0) return;
             Course c = (Course)cmbCourse.SelectedItem;
             frameMainframe.Navigate(new CoursePage(c));
 

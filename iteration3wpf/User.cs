@@ -20,8 +20,8 @@ namespace iteration3wpf
         private int _Id;
         public override int Id { get{return _Id;} set{} }
         [Synchronize(true)]
-        private string _Username; 
-        public string Username { get {return syncDown("Username", _Username); } set { _Username = syncUp("Username", value); } } // stores the username of the user
+        private string _Username;
+        public string Username { get { return syncDown("Username", _Username.ToLowerInvariant()); } set { _Username = syncUp("Username", value).ToLowerInvariant(); } } // stores the username of the user
         [Synchronize]
         private string _Password;
         public string Password { get {return syncDown("Password", _Password); } set { _Password = syncUp("Password", value); } } // stores the password of the user
@@ -64,7 +64,7 @@ namespace iteration3wpf
 
         public static User login(string username, string password, bool checkpass = true)
         {
-            DataTable t = SQLiteDB.main.GetDataTable("SELECT * FROM 'Users' WHERE Username=@param1;", username);
+            DataTable t = SQLiteDB.main.GetDataTable("SELECT * FROM 'Users' WHERE Username=@param1;", username.ToLowerInvariant());
             if (t.Rows.Count < 1) return null;
             else if (t.Rows.Count > 1) throw new SystemException("There were two users with the same name in the database");
             else
@@ -83,7 +83,7 @@ namespace iteration3wpf
         //Utils
         public override string ToString()
         {
-            if (MainWindow.activeUser.UserType == usertype.Admin) return Username;
+            if (MainWindow.activeUser.UserType == usertype.Admin) return Username.ToLowerInvariant();
             else return FirstName +" "+ LastName;
         }
 
