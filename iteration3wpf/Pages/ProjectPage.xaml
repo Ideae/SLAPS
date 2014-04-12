@@ -24,7 +24,7 @@
         <Border HorizontalAlignment="Left" Margin="260,19,0,28" Padding="7" BorderThickness="2" Background="#FFAABBC1" BorderBrush="#FF707070" Width="147">
             <Grid>
                 <Button x:Name="btnEditProject" Content="Edit Project" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Click="btnEditProject_Click"/>
-                <Button x:Name="btnUploadInstructions" Content="Upload Instructions" HorizontalAlignment="Left" Margin="0,53,0,0" VerticalAlignment="Top" Width="129"/>
+                <Button x:Name="btnUploadInstructions" Content="Upload Instructions" Margin="0,53,0,0" VerticalAlignment="Top" Click="btnUploadInstructions_Click"/>
                 <Button x:Name="btnCreateGroup" Content="Create Group" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Width="129" Click="btnCreateGroup_Click"/>
                 <Button x:Name="btnViewGroups" Content="View Groups" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" Width="129" Click="btnViewGroups_Click"/>
                 <Button x:Name="btnSubmitProject" Content="Submit Project" HorizontalAlignment="Left" Margin="0,161,0,0" VerticalAlignment="Top" Width="129"/>

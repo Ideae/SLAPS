@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using iteration3wpf.Windows;
 using iteration3wpf.Pages;
+using System.IO;
 
 namespace iteration3wpf
 {
@@ -24,6 +25,16 @@ namespace iteration3wpf
     public partial class MainWindow : Window
     {
         public static MainWindow mainWindow;
+        public static readonly string MainDirectory = Environment.CurrentDirectory;
+        private static readonly string _ServerDirectory = MainDirectory + "\\FakeServer";
+        public static string ServerDirectory { 
+            get 
+            {
+                if (!Directory.Exists(_ServerDirectory))
+                    Directory.CreateDirectory(_ServerDirectory);
+                return _ServerDirectory;
+            }
+        }
         public static User activeUser { get; set; }
         public MainWindow()
         {

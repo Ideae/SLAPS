@@ -1,6 +1,7 @@
 ﻿using iteration3wpf.Windows;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace iteration3wpf.Pages
 {
@@ -31,6 +31,10 @@ namespace iteration3wpf.Pages
             lblMaxMarks.Content = project.MaxMarks;
             lblDueDate.Content = project.DueDate.ToLongDateString();
             lblSummary.Content = project.Summary;
+            foreach (var f in project.Attatchments)
+            {
+                Utilities.AddTextBlock(stkFiles, f.FileName, "");
+            }
 
             if (MainWindow.activeUser.UserType == usertype.Student)
             {
@@ -110,6 +114,28 @@ namespace iteration3wpf.Pages
             SendSLAPWindow viewSubmissionsWindow = new SendSLAPWindow(group);
             MainWindow.mainWindow.IsEnabled = false;
             viewSubmissionsWindow.ShowDialog();
+        }
+
+        private void btnUploadInstructions_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            bool? result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string fileName = dlg.FileName;
+                string fileDirectory = MainWindow.ServerDirectory + "\\" + project.PrjCourse.CourseCode.Replace(' ', '_').Trim() + project.PrjCourse.Title.Replace(' ', '_').Trim();
+                if (!Directory.Exists(fileDirectory)) Directory.CreateDirectory(fileDirectory);
+                string fullpath = Path.Combine(fileDirectory, Path.GetFileName(fileName));
+                if (File.Exists(fullpath)){
+                    MessageBox.Show("File already exists!");
+                    return;
+                }
+                File.Copy(fileName, fullpath);
+                LFile f = LFile.getNew();
+                f.FileName = fileName; f.Path = fileDirectory;
+                project.Attatchments.Add(f);
+            }
+            MainWindow.mainWindow.frameMainframe.Navigate(new ProjectPage(project));
         }
     }
 }

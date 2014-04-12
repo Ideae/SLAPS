@@ -12,9 +12,14 @@ namespace iteration3wpf
         public override int Id { get {return syncDown("Id", _Id); } set { _Id = syncUp("Id", value); } }
 
         [Synchronize(true)]
-        private string _Path;
-        public string Path { get {return syncDown("Path", _Path); } set { _Path = syncUp("Path", value); } }
+        private string _FileName;
+        public string FileName { get { return syncDown("FileName", _FileName); } set { _FileName = syncUp("FileName", value); } }
 
+        [Synchronize(true)]
+        private string _Path;
+        public string Path { get {return syncDown("Path", _FileName); } set { _FileName = syncUp("Path", value); } }
+
+        public string relativePath { get { return Path + "\\" + FileName; } }
         protected LFile(int id)
             : base(id)
         {
