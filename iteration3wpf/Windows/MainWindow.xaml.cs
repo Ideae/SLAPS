@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using iteration3wpf.Windows;
 using iteration3wpf.Pages;
 using System.IO;
+using System.Data;
 
 namespace iteration3wpf
 {
@@ -46,13 +47,14 @@ namespace iteration3wpf
             if (activeUser.UserType == usertype.Admin)
             {
                 cmbCourse.Visibility = System.Windows.Visibility.Hidden;
+
+                PopulateCoursesInList();
+                listProjects.SelectionChanged += listProjects_SelectionChangedAdmin;
             }
-            //else
-            //{
-            //    //cmbCourse.IsEditable = true;
-            //    //cmbCourse.Text = "Select Course";
-            //    //cmbCourse.IsReadOnly = true;
-            //}
+            else
+            {
+                listProjects.SelectionChanged += listProjects_SelectionChanged;
+            }
 
             MenuItem menuItemAccount = new MenuItem(); menuItemAccount.Header = "Account";
             MenuItem menuItemChangePassword = new MenuItem(); menuItemChangePassword.Header = "Change Password";
@@ -72,7 +74,35 @@ namespace iteration3wpf
 
             PopulateSidebar();
 
-            listProjects.SelectionChanged += listProjects_SelectionChanged;
+        }
+
+        public void PopulateCoursesInList()
+        {
+            int count = listProjects.Items.Count;
+            for(int i = 0; i < count; i++)
+            {
+                listProjects.Items.RemoveAt(0);
+            }
+            DataRowCollection list = SQLiteDB.main.GetDataTable("SELECT * FROM Courses").Rows;
+            foreach (DataRow d in list)
+            {
+                long? lonlon = d.Field<long?>("Id");
+                if (lonlon == null) continue;
+                int i = (int)lonlon;
+                Course c = Course.GetById(i);
+                if (c == null)
+                {
+                    continue;
+                }
+                listProjects.Items.Add(c);
+            }
+        }
+
+        private void listProjects_SelectionChangedAdmin(object sender, SelectionChangedEventArgs e)
+        {
+            if (listProjects.SelectedValue == null) return;
+            Course course = (Course)listProjects.SelectedItem;
+            frameMainframe.Navigate(new EditCoursePage(course));
         }
 
         void listProjects_SelectionChanged(object sender, SelectionChangedEventArgs e)

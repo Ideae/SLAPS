@@ -118,8 +118,8 @@
     <Compile Include="Windows\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ViewMessagesPage.xaml.cs">
-      <DependentUpon>ViewMessagesPage.xaml</DependentUpon>
+    <Compile Include="Pages\EditCoursePage.xaml.cs">
+      <DependentUpon>EditCoursePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\RegisterUserWindow.xaml.cs">
       <DependentUpon>RegisterUserWindow.xaml</DependentUpon>
@@ -196,7 +196,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ViewMessagesPage.xaml">
+    <Page Include="Pages\EditCoursePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

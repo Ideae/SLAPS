@@ -56,7 +56,7 @@ namespace iteration3wpf.Windows
         {
             if (listAdded.SelectedIndex >= 0)
             {
-                User s = (User)listUnadded.SelectedItem;
+                User s = (User)listAdded.SelectedItem;
                 listUnadded.Items.Add(s);
                 listAdded.Items.Remove(s);
             }

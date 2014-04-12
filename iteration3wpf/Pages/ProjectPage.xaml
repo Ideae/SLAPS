@@ -14,7 +14,6 @@
         <Border HorizontalAlignment="Left" Height="89" Margin="10,294,0,0" VerticalAlignment="Top" Width="397" BorderThickness="2" BorderBrush="#FF707070" >
             <ScrollViewer>
                 <StackPanel x:Name="stkFiles" Background="#FFAABBC1"/>
-
             </ScrollViewer>
 
         </Border>

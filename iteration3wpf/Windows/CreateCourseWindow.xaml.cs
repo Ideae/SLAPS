@@ -55,8 +55,9 @@ namespace iteration3wpf.Windows
             course.DateStart = (DateTime)dateStart.SelectedDate;
             course.DateEnd = (DateTime)dateEnd.SelectedDate;
             course.DateEnrollment = (DateTime)dateEnrollmentDeadline.SelectedDate;
-            MessageBox.Show("User succesfully created.");
+            MessageBox.Show("Course succesfully created.");
             Close();
+            MainWindow.mainWindow.PopulateCoursesInList();
         }
     }
 }
