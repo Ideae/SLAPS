@@ -44,5 +44,19 @@ namespace iteration3wpf
             tb2.Text = text;
             stk.Children.Add(tb2);
         }
+        public static void AddFileBlock(StackPanel stk, LFile File)
+        {
+            TextBlock tb1 = new TextBlock();
+            tb1.Padding = new Thickness(5);
+            //tb1.Text = title;
+            tb1.Inlines.Add(new Bold(new Run(File.FileName)));
+            stk.Children.Add(tb1);
+
+            Button tb2 = new Button();
+            tb2.Padding = new Thickness(15, 0, 5, 0);
+            tb2.Content = "Download";
+            tb2.Click += delegate{File.Download();};
+            stk.Children.Add(tb2);
+        }
     }
 }
