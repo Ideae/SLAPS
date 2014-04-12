@@ -79,6 +79,7 @@
     <Compile Include="Pages\ProjectPage.xaml.cs">
       <DependentUpon>ProjectPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PasswordRequest.cs" />
     <Compile Include="SQLiteDB.cs" />
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -129,7 +130,6 @@
     <Compile Include="Windows\SendSLAPWindow.xaml.cs">
       <DependentUpon>SendSLAPWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Student.cs" />
     <Compile Include="Windows\ViewGroupsWindow.xaml.cs">
       <DependentUpon>ViewGroupsWindow.xaml</DependentUpon>
     </Compile>

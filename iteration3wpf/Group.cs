@@ -31,7 +31,6 @@ namespace iteration3wpf
         {
             _Id = id;
             _Members.CollectionChanged += delegate { Members = _Members; };
-
         }
 
         public override string ToString()

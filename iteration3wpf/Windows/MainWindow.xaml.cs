@@ -32,16 +32,16 @@ namespace iteration3wpf
             InitUser();
 
 
-            if (false && activeUser.UserType == usertype.Admin) //change
+            if (activeUser.UserType == usertype.Admin)
             {
                 cmbCourse.Visibility = System.Windows.Visibility.Hidden;
             }
-            else
-            {
-                cmbCourse.IsEditable = true;
-                cmbCourse.Text = "Select Course";
-                cmbCourse.IsReadOnly = true;
-            }
+            //else
+            //{
+            //    //cmbCourse.IsEditable = true;
+            //    //cmbCourse.Text = "Select Course";
+            //    //cmbCourse.IsReadOnly = true;
+            //}
 
             MenuItem menuItemAccount = new MenuItem(); menuItemAccount.Header = "Account";
             MenuItem menuItemChangePassword = new MenuItem(); menuItemChangePassword.Header = "Change Password";
@@ -61,6 +61,7 @@ namespace iteration3wpf
 
             PopulateSidebar();
 
+            //treeViewMain.click
         }
 
         void menuItemLogout_Click(object sender, RoutedEventArgs e)

@@ -51,6 +51,8 @@ namespace iteration3wpf.Pages
                 t = btnSLAPGroup.Margin;
                 t.Top = btnUploadInstructions.Margin.Top;
                 btnSLAPGroup.Margin = t;
+
+                btnViewGroups.Content = "View Group";
             }
             else
             {
@@ -76,9 +78,32 @@ namespace iteration3wpf.Pages
         }
         private void btnViewGroups_Click(object sender, RoutedEventArgs e)
         {
-            ViewGroupsWindow viewGroupsWindow = new ViewGroupsWindow(project);
-            MainWindow.mainWindow.IsEnabled = false;
-            viewGroupsWindow.ShowDialog();
+            if (MainWindow.activeUser.UserType == usertype.Instructor)
+            {
+                ViewGroupsWindow viewGroupsWindow = new ViewGroupsWindow(project);
+                MainWindow.mainWindow.IsEnabled = false;
+                viewGroupsWindow.ShowDialog();
+            }
+            else
+            {
+                Group group = null;
+                foreach(Group g in MainWindow.activeUser.Groups)
+                {
+                    if (g.GrpProject == project)
+                    {
+                        group = g;
+                    }
+                }
+                if (group == null)
+                {
+                    MessageBox.Show("You aren't in a group for this project yet.");
+                    return;
+                }
+
+                ViewGroupsWindow viewGroupsWindow = new ViewGroupsWindow(group);
+                MainWindow.mainWindow.IsEnabled = false;
+                viewGroupsWindow.ShowDialog();
+            }
         }
 
         private void btnViewSubmissions_Click(object sender, RoutedEventArgs e)

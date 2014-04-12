@@ -41,11 +41,5 @@ namespace iteration3wpf
             _Files.CollectionChanged += delegate { Files = _Files; }; ;
 
         }
-    
-    
-    
-    
-    
-    
     }
 }
