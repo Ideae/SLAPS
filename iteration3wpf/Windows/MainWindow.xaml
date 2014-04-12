@@ -10,14 +10,11 @@
         <ComboBox x:Name="cmbCourse" Text="Select Course" Margin="10,67,496,0" VerticalAlignment="Top" SelectionChanged="cmbCourse_SelectionChanged"/>
         <Label x:Name="lblName" Content="name" HorizontalAlignment="Left" Margin="437,0,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblUsertype" Content="title" HorizontalAlignment="Left" Margin="437,17,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnTest" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnTest_Click"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="411" Margin="197,40,0,-1" Stroke="Black" VerticalAlignment="Top" Width="435"/>
         <Frame x:Name="frameMainframe" Content="Frame" HorizontalAlignment="Left" Height="412" Margin="197,39,0,-1" VerticalAlignment="Top" Width="435"/>
-        <Button x:Name="btnPage1" Content="Page 1" HorizontalAlignment="Left" Margin="117,10,0,0" VerticalAlignment="Top" Width="75" Click="btnPage1_Click"/>
-        <Button x:Name="btnPage2" Content="Page 2" HorizontalAlignment="Left" Margin="197,10,0,0" VerticalAlignment="Top" Width="75" Click="btnPage2_Click"/>
         <StackPanel HorizontalAlignment="Left" Height="181" Margin="10,259,0,0" VerticalAlignment="Top" Width="174" x:Name="stackActions"/>
         <Label Content="Actions" HorizontalAlignment="Left" Margin="10,228,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnFile" Content="File" HorizontalAlignment="Left" Margin="296,10,0,0" VerticalAlignment="Top" Width="75" Click="btnFile_Click"/>
+        <Label Content="SLAPS" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
 
     </Grid>
 </Window>

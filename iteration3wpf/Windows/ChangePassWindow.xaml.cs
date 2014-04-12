@@ -45,7 +45,7 @@ namespace iteration3wpf
             else
             {
                 MainWindow.activeUser.Password = txtNewPass1.Text;
-                MessageBox.Show(this, "Your password is born again.");
+                MessageBox.Show(this, "Your password has been changed.");
                 Close();
             }
         }

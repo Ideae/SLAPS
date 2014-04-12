@@ -18,11 +18,6 @@ using iteration3wpf.Pages;
 
 namespace iteration3wpf
 {
-    public enum AllPages
-    {
-        Home,
-        ViewMessages,
-    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -30,21 +25,12 @@ namespace iteration3wpf
     {
         public static MainWindow mainWindow;
         public static User activeUser { get; set; }
-
-        public Dictionary<AllPages, Page> pageDict;
-
-        //static MainWindow()
-        //{
-        //    mainWindow = new MainWindow();
-        //}
-
         public MainWindow()
         {
             InitializeComponent();
             this.CenterWindow();
             InitUser();
 
-            //this.Closed += (s, e) => Application.Current.Shutdown();
 
             if (false && activeUser.UserType == usertype.Admin) //change
             {
@@ -69,15 +55,9 @@ namespace iteration3wpf
             menuItemChangePassword.Click += menuItemChangePassword_Click;
             menuItemLogout.Click += menuItemLogout_Click;
 
-
-            pageDict = new Dictionary<AllPages, Page>()
-            {
-                {AllPages.Home, new HomePage()},
-                {AllPages.ViewMessages, new ViewMessagesPage()},
-            };
             frameMainframe.NavigationUIVisibility = NavigationUIVisibility.Hidden;
 
-            frameMainframe.Navigate(pageDict[AllPages.Home]);
+            frameMainframe.Navigate(new HomePage());
 
             PopulateSidebar();
 
@@ -160,7 +140,7 @@ namespace iteration3wpf
 
         void homeItem_Click(object sender, RoutedEventArgs e)
         {
-            frameMainframe.Navigate(pageDict[AllPages.Home]);
+            frameMainframe.Navigate(new HomePage());
         }
 
         void resetPasswords_Click(object sender, RoutedEventArgs e)
@@ -196,11 +176,11 @@ namespace iteration3wpf
             item.Header = obj;
             return item;
         }
-        public T GetPage<T>() where T : Page
-        {
-            Page p = pageDict.Values.First(pp => pp.GetType() == typeof(T));
-            return p != null ? (T)p : null;
-        }
+        //public T GetPage<T>() where T : Page
+        //{
+        //    Page p = pageDict.Values.First(pp => pp.GetType() == typeof(T));
+        //    return p != null ? (T)p : null;
+        //}
 
         public void InitUser()
         {
@@ -284,7 +264,7 @@ namespace iteration3wpf
 
         private void btnPage1_Click(object sender, RoutedEventArgs e)
         {
-            frameMainframe.Navigate(pageDict[AllPages.Home]);
+            frameMainframe.Navigate(new HomePage());
         }
 
         private void btnPage2_Click(object sender, RoutedEventArgs e)

@@ -24,9 +24,9 @@ namespace iteration3wpf.Windows
             InitializeComponent();
             this.CenterWindow();
 
-            cmbUsertype.Items.Add("Student");
-            cmbUsertype.Items.Add("Instructor");
-            cmbUsertype.Items.Add("Administrator");
+            cmbUsertype.Items.Add(usertype.Student);
+            cmbUsertype.Items.Add(usertype.Instructor);
+            cmbUsertype.Items.Add(usertype.Admin);
             cmbUsertype.SelectedIndex = 0;
 
         }
@@ -38,6 +38,27 @@ namespace iteration3wpf.Windows
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
+            Close();
+        }
+
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            bool notvalid = string.IsNullOrWhiteSpace(txtFirstname.Text)
+                || string.IsNullOrWhiteSpace(txtLastname.Text)
+                || string.IsNullOrWhiteSpace(txtUsername.Text)
+                || string.IsNullOrWhiteSpace(txtPassword.Text);
+            if (notvalid)
+            {
+                MessageBox.Show("Please enter valid input.");
+                return;
+            }
+            User user = User.getNew();
+            user.FirstName = txtFirstname.Text;
+            user.LastName = txtLastname.Text;
+            user.Username = txtUsername.Text;
+            user.Password = txtPassword.Text;
+            user.UserType = (usertype)cmbUsertype.SelectedItem;
+            MessageBox.Show("User succesfully created.");
             Close();
         }
     }

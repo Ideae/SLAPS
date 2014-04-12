@@ -26,14 +26,13 @@ namespace iteration3wpf.Windows
             this.p = p;
             foreach (var s in p.PrjCourse.Students)
             {
+                bool notAvailable = false;
                 foreach (var g in s.Groups)
                 {
-                    if (g.GrpProject == p) goto Finish;
+                    if (g.GrpProject == p) notAvailable = true;
                 }
+                if (notAvailable) continue;
                 listUnadded.Items.Add(s);
-
-            Finish:
-                continue;
             }
             
             this.CenterWindow();

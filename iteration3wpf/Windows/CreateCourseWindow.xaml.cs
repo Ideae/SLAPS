@@ -34,5 +34,29 @@ namespace iteration3wpf.Windows
         {
             Close();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            bool notvalid = string.IsNullOrWhiteSpace(txtCourseCode.Text)
+                || string.IsNullOrWhiteSpace(txtCourseDescription.Text)
+                || string.IsNullOrWhiteSpace(txtCourseTitle.Text)
+                || dateEnd.SelectedDate == null
+                || dateStart.SelectedDate == null
+                || dateEnrollmentDeadline.SelectedDate == null;
+            if (notvalid)
+            {
+                MessageBox.Show("Please enter valid input.");
+                return;
+            }
+            Course course = Course.getNew();
+            course.CourseCode = txtCourseCode.Text;
+            course.Description = txtCourseDescription.Text;
+            course.Title = txtCourseTitle.Text;
+            course.DateStart = (DateTime)dateStart.SelectedDate;
+            course.DateEnd = (DateTime)dateEnd.SelectedDate;
+            course.DateEnrollment = (DateTime)dateEnrollmentDeadline.SelectedDate;
+            MessageBox.Show("User succesfully created.");
+            Close();
+        }
     }
 }

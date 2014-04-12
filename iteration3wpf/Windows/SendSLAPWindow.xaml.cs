@@ -20,8 +20,10 @@ namespace iteration3wpf.Windows
     public partial class SendSLAPWindow : Window
     {
         AddRecipientsWindow arw;
-        public SendSLAPWindow()
+        public Group group = null;
+        public SendSLAPWindow(Group group = null)
         {
+            this.group = group;
             InitializeComponent();
             this.CenterWindow();
             if (MainWindow.activeUser.UserType == usertype.Admin)
@@ -34,9 +36,17 @@ namespace iteration3wpf.Windows
             {
                 lblTitle.Content = "Send SLAP (Message)";
             }
+
+            if (group != null)
+            {
+                lblAddRecipients.Visibility = System.Windows.Visibility.Hidden;
+                btnAddRecipients.Visibility = System.Windows.Visibility.Hidden;
+            }
+
             arw = new AddRecipientsWindow(this);
 
         }
+        
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -65,6 +75,23 @@ namespace iteration3wpf.Windows
             m.Title = txtSubject.Text;
             m.Content = txtMessage.Text;
             m.Sender = MainWindow.activeUser;
+
+            if (group != null)
+            {
+                foreach (User u in group.Members)
+                {
+                    if (u != MainWindow.activeUser)
+                    {
+                        m.Recievers.Add(u);
+                        u.Messages.Add(m);
+                    }
+                }
+                MessageBox.Show("Message was sent.");
+                arw.Close();
+                Close();
+                return;
+            }
+
             if (MainWindow.activeUser.UserType == usertype.Admin)
             {
                 m.Recievers.Add(User.GetById(0));

@@ -36,8 +36,8 @@ namespace iteration3wpf.Pages
             {
                 btnEditProject.Visibility = System.Windows.Visibility.Hidden;
                 btnCreateGroup.Visibility = System.Windows.Visibility.Hidden;
-                btnViewGroups.Visibility = System.Windows.Visibility.Hidden;
                 btnUploadInstructions.Visibility = System.Windows.Visibility.Hidden;
+                //btnViewGroups.Visibility = System.Windows.Visibility.Hidden;
 
                 Thickness t = btnSubmitProject.Margin;
                 t.Top = btnEditProject.Margin.Top;
@@ -49,7 +49,7 @@ namespace iteration3wpf.Pages
                 btnViewSubmissions.Content = "View Submission";
 
                 t = btnSLAPGroup.Margin;
-                t.Top = btnViewGroups.Margin.Top;
+                t.Top = btnUploadInstructions.Margin.Top;
                 btnSLAPGroup.Margin = t;
             }
             else
@@ -93,6 +93,23 @@ namespace iteration3wpf.Pages
             {
                 MainWindow.mainWindow.IsEnabled = true;
             }
+        }
+
+        private void btnSLAPGroup_Click(object sender, RoutedEventArgs e)
+        {
+            Group group = null;
+            foreach (var g in MainWindow.activeUser.Groups)
+            {
+                if (g.GrpProject == project) group = g;
+            }
+            if (group == null)
+            {
+                MessageBox.Show("You aren't in a group.");
+                return;
+            }
+            SendSLAPWindow viewSubmissionsWindow = new SendSLAPWindow(group);
+            MainWindow.mainWindow.IsEnabled = false;
+            viewSubmissionsWindow.ShowDialog();
         }
     }
 }

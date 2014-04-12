@@ -19,6 +19,9 @@ namespace iteration3wpf
         private string _Title;
         public string Title { get { return syncDown("Title", _Title); } set { _Title = syncUp("Title", value); } }
         [Synchronize]
+        private string _Description;
+        public string Description { get { return syncDown("Description", _Description); } set { _Description = syncUp("Description", value); } }
+        [Synchronize]
         private User _Instructor;
         public User Instructor { get {return syncDown("Instructor", _Instructor); } set { _Instructor = syncUp("Instructor", value); } }
         [Synchronize]
@@ -33,7 +36,15 @@ namespace iteration3wpf
         [Synchronize]
         private ObservableCollection<Message> _Announcements = new ObservableCollection<Message>();
         public ObservableCollection<Message> Announcements { get { return syncDown("Announcements", _Announcements); } set { _Announcements = syncUp("Announcements", value); } }
-
+        [Synchronize]
+        private DateTime _DateStart;
+        public DateTime DateStart { get { return syncDown("DateStart", _DateStart); } set { _DateStart = syncUp("DateStart", value); } }
+        [Synchronize]
+        private DateTime _DateEnd;
+        public DateTime DateEnd { get { return syncDown("DateEnd", _DateEnd); } set { _DateEnd = syncUp("DateEnd", value); } }
+        [Synchronize]
+        private DateTime _DateEnrollment;
+        public DateTime DateEnrollment { get { return syncDown("DateEnrollment", _DateEnrollment); } set { _DateEnrollment = syncUp("DateEnrollment", value); } }
         protected Course(int id) : base(id) 
         {
             _Id = id;
