@@ -106,7 +106,7 @@ namespace iteration3wpf.Windows
             }
             else
             {
-                float percent = sub.Mark / sub.SmProject.MaxMarks * 100f;
+                float percent = (float)sub.Mark / (float)sub.SmProject.MaxMarks * 100f;
                 string p = string.Format("{0:00.00}", percent);
                 mark += sub.Mark + " / " + sub.SmProject.MaxMarks + " (" + p + "%)";
             }
@@ -132,7 +132,16 @@ namespace iteration3wpf.Windows
                 if (graded) b.Content = "Reevalute";
                 b.Click += (s, e) =>
                 {
-                    //open evalute window
+                    if (sub.SmProject.MaxMarks < 0)
+                    {
+                        MessageBox.Show("Project is not markable.");
+                    }
+                    else
+                    {
+                        EvaluateSubmissionWindow evalWindow = new EvaluateSubmissionWindow(this, mark, sub);
+                        evalWindow.Show();
+                        IsEnabled = false;
+                    }
                 };
                 sp.Children.Add(b);
             }
