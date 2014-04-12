@@ -33,7 +33,7 @@ namespace iteration3wpf.Pages
             lblSummary.Content = project.Summary;
             foreach (var f in project.Attatchments)
             {
-                Utilities.AddTextBlock(stkFiles, f.FileName, "");
+                Utilities.AddFileBlock(stkFiles, f);
             }
 
             if (MainWindow.activeUser.UserType == usertype.Student)
@@ -148,7 +148,7 @@ namespace iteration3wpf.Pages
             if (result == true)
             {
                 string fileName = dlg.FileName;
-                string fileDirectory = MainWindow.ServerDirectory + "\\" + project.PrjCourse.CourseCode.Replace(' ', '_').Trim() + project.PrjCourse.Title.Replace(' ', '_').Trim();
+                string fileDirectory = MainWindow.ServerDirectory + "\\" + project.PrjCourse.CourseCode.Replace(' ', '_').Trim() +"\\"+ project.Title.Replace(' ', '_').Trim();
                 if (!Directory.Exists(fileDirectory)) Directory.CreateDirectory(fileDirectory);
                 string fullpath = Path.Combine(fileDirectory, Path.GetFileName(fileName));
                 if (File.Exists(fullpath)){
@@ -156,8 +156,10 @@ namespace iteration3wpf.Pages
                     return;
                 }
                 File.Copy(fileName, fullpath);
+                string partialName = Path.GetFileName(fileName).Replace(' ', '_').Trim();
                 LFile f = LFile.getNew();
-                f.FileName = fileName; f.Path = fileDirectory;
+                f.FileName = partialName;
+                f.Path = fileDirectory;
                 project.Attatchments.Add(f);
             }
             MainWindow.mainWindow.frameMainframe.Navigate(new ProjectPage(project));
