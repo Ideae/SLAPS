@@ -76,6 +76,19 @@ namespace iteration3wpf
                 TryLogin(User.login("vmisic", "406Prof"));
                 return;
             }
+
+            User u = User.login(txtUsername.Text, txtPassword.Password, false);
+            if (u == null)
+            {
+                MessageBox.Show("User did not exist.");
+                return;
+            }
+            PasswordRequest prequest = PasswordRequest.getNew();
+            prequest.UserRequesting = u;
+            MessageBox.Show("Password request has been sent to admin.");
+            txtUsername.Text = "";
+            txtPassword.Clear();
+
         }
 
         private void txtUsername_MouseDoubleClick(object sender, MouseButtonEventArgs e)

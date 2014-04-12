@@ -73,17 +73,17 @@ namespace iteration3wpf
 
         private static object parseDB(DataRow data, Type t, string column)
         {
-
             Object o = null;
             if (t == typeof(string)) o = data.Field<string>(column);
             else if (t == typeof(int)) o = (int)(data.Field<long?>(column) ?? -1);
-            else if (t.IsEnum) o = Enum.Parse(t, data.Field<string>(column) ?? "Student");
+            else if (t.IsEnum) o = Enum.Parse(t, data.Field<string>(column) ?? Activator.CreateInstance(t).ToString());
             else if (t == typeof(float)) o = (float?)data.Field<float?>(column) ?? -1f;
             else if (t == typeof(DateTime)) o = DateTime.Parse(data.Field<string>(column) ?? DateTime.Now.ToString());
+            else if (t == typeof(bool)) o = (bool.Parse(data.Field<string>(column) ?? bool.FalseString));
             else if (t.IsSubclassOf(typeof(Loadable)))
             {
                 MethodInfo mi = t.GetMethod("GetById", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-                o = mi.Invoke(null, new object[1] { ((int?)data.Field<long?>(column)?? -1) });
+                o = mi.Invoke(null, new object[1] { ((int?)data.Field<long?>(column) ?? -1) });
             }
             else if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(ObservableCollection<>))
                 if (t.GetGenericArguments()[0] == typeof(Loadable))
@@ -122,6 +122,7 @@ namespace iteration3wpf
             else if (o is float) s = o.ToString();
             else if (o.GetType().IsEnum) s = ((Enum)o).ToString();
             else if (o is DateTime) s = o.ToString();
+            else if (o is bool) s = o.ToString();
             else if (o.GetType().IsSubclassOf(typeof(Loadable))) s = ((dynamic)o).Id.ToString();
             else if (o.GetType().IsGenericType && o.GetType().GetGenericTypeDefinition() == typeof(ObservableCollection<>))
                 if (o.GetType().GetGenericArguments()[0] == typeof(Loadable))

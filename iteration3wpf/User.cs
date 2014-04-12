@@ -62,7 +62,7 @@ namespace iteration3wpf
             _Submissions.CollectionChanged += delegate { Submissions = _Submissions; };
         }
 
-        public static User login(string username, string password)
+        public static User login(string username, string password, bool checkpass = true)
         {
             DataTable t = SQLiteDB.main.GetDataTable("SELECT * FROM 'Users' WHERE Username=@param1;", username);
             if (t.Rows.Count < 1) return null;
@@ -72,7 +72,7 @@ namespace iteration3wpf
                 DataRow UserRow = t.Rows[0];
                 
                 Console.WriteLine(UserRow.Field<string>("Password"));
-                if (UserRow.Field<string>("Password") != password) return null;
+                if (UserRow.Field<string>("Password") != password && checkpass) return null;
                 else return User.GetById((int)UserRow.Field<long>("Id"));
             }
         }

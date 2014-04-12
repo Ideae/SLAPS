@@ -79,6 +79,7 @@
     <Compile Include="Pages\ProjectPage.xaml.cs">
       <DependentUpon>ProjectPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PasswordRequest.cs" />
     <Compile Include="SQLiteDB.cs" />
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
